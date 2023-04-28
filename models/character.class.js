@@ -1,6 +1,8 @@
-class Character extends MovableObject{
+class Character extends MovableObject {
 
     height = 300;
+    y = 50;
+    speed = 10;
     width = 250;
     IMAGES_SWIMMING = [
         'img/1.Sharkie/3.Swim/1.png',
@@ -10,29 +12,45 @@ class Character extends MovableObject{
         'img/1.Sharkie/3.Swim/5.png',
         'img/1.Sharkie/3.Swim/6.png',
     ];
+    world;
 
-    currentImage = 0;
-
-    constructor(){
+    constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGES_SWIMMING);
 
         this.animate();
-        this.y = 50;
+
     }
 
-    animate(){
-        setInterval( () => {
-            let i = this.currentImage % this.IMAGES_SWIMMING.length;
-            let path = this.IMAGES_SWIMMING[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-        }, 300);
-        
-    }
-    
+    animate() {
 
-    spin(){
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT) {
+                this.x += this.speed;
+                this.otherDirection = false;
+            }
+
+            if (this.world.keyboard.LEFT) {
+                this.x -= this.speed;
+                this.otherDirection = true;
+            }
+
+        }, 1000 / 60);
+
+
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                
+                let i = this.currentImage % this.IMAGES_SWIMMING.length;
+                let path = this.IMAGES_SWIMMING[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+        }, 30);
+    }
+
+
+    spin() {
 
     }
 }
