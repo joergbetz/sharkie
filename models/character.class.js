@@ -12,13 +12,26 @@ class Character extends MovableObject {
         'img/1.Sharkie/3.Swim/5.png',
         'img/1.Sharkie/3.Swim/6.png',
     ];
+
+    IMAGES_FIN_SLAP = [
+        'img/1.Sharkie/4.Attack/Fin slap/1.png',
+        'img/1.Sharkie/4.Attack/Fin slap/2.png',
+        'img/1.Sharkie/4.Attack/Fin slap/3.png',
+        'img/1.Sharkie/4.Attack/Fin slap/4.png',
+        'img/1.Sharkie/4.Attack/Fin slap/5.png',
+        'img/1.Sharkie/4.Attack/Fin slap/6.png',
+        'img/1.Sharkie/4.Attack/Fin slap/7.png',
+        'img/1.Sharkie/4.Attack/Fin slap/8.png',
+    ];
+
     world;
     swimming_sound = new Audio('audio/swimming.mp3');
 
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGES_SWIMMING);
-
+        this.loadImages(this.IMAGES_FIN_SLAP);
+        this.applyGravity();
         this.animate();
 
     }
@@ -44,14 +57,14 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-
                 this.playAnimation(this.IMAGES_SWIMMING);
-            }
-        }, 30);
-    }
+            };
+        }, 3000);
 
-
-    spin() {
-
-    }
-}
+        setInterval(() => {
+            if (this.world.keyboard.SPACE) {
+                this.playAnimation(this.IMAGES_FIN_SLAP);
+            };
+        }, 10)
+    };
+} 

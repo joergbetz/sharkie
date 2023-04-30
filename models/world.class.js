@@ -1,8 +1,6 @@
 class World {
     character = new Character();
     level = level1;
-    /* enemies = level1.enemies;
-    backgroundObjects = level1.backgroundObjects; */
     canvas;
     ctx;
     keyboard;
