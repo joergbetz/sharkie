@@ -10,9 +10,9 @@ class MovableObject {
     otherDirection = false;
     goUp = false;
     speedY = 0;
-    acceleration = 0.01;
+    acceleration = 0.00;
 
-    applyGravity(){
+    applyGravity() {
         setInterval(() => {
             if (this.isNotOnGround()) {
                 this.y += this.speedY;
@@ -39,15 +39,24 @@ class MovableObject {
 
     }
 
-    moveRight() {
-        console.log('Moving-rigth');
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
 
+    drawFrame(ctx) {
+        ctx.beginPath();
+        ctx.lineWidth = '5';
+        ctx.strokeStyle = "blue";
+        ctx.rect(this.x, this.y, this.width, this.height);
+        ctx.stroke();
+    }
+
+    moveRight() {
+        this.x += this.speed;
     }
 
     moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60);
+        this.x -= this.speed;
     }
 
     moveUp() {
@@ -55,12 +64,12 @@ class MovableObject {
             if (this.y < level1.level_start_y) {
                 this.goUp = false;
             }
-            if (this.y > level1.level_end_y){
+            if (this.y > level1.level_end_y) {
                 this.goUp = true;
             }
-            if (this.goUp){
+            if (this.goUp) {
                 this.y -= this.speed;
-            }else{
+            } else {
                 this.y += this.speed;
             }
         }, 1000 / 60);
