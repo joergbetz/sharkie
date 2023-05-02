@@ -4,13 +4,21 @@ class Character extends MovableObject {
     y = 50;
     speed = 10;
     width = 250;
+
+    offset = {
+        top: 130,
+        bottom: 70,
+        left: 40,
+        right: 40
+    };
+
     IMAGES_SWIMMING = [
         'img/1.Sharkie/3.Swim/1.png',
         'img/1.Sharkie/3.Swim/2.png',
         'img/1.Sharkie/3.Swim/3.png',
         'img/1.Sharkie/3.Swim/4.png',
         'img/1.Sharkie/3.Swim/5.png',
-        'img/1.Sharkie/3.Swim/6.png',
+        'img/1.Sharkie/3.Swim/6.png'
     ];
 
     IMAGES_FIN_SLAP = [
@@ -21,7 +29,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/4.Attack/Fin slap/5.png',
         'img/1.Sharkie/4.Attack/Fin slap/6.png',
         'img/1.Sharkie/4.Attack/Fin slap/7.png',
-        'img/1.Sharkie/4.Attack/Fin slap/8.png',
+        'img/1.Sharkie/4.Attack/Fin slap/8.png'
     ];
 
     IMAGES_IDLE = [
@@ -42,7 +50,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/1.IDLE/15.png',
         'img/1.Sharkie/1.IDLE/16.png',
         'img/1.Sharkie/1.IDLE/17.png',
-        'img/1.Sharkie/1.IDLE/18.png',
+        'img/1.Sharkie/1.IDLE/18.png'
     ];
 
     IMAGES_LONG_IDLE = [
@@ -59,7 +67,22 @@ class Character extends MovableObject {
         'img/1.Sharkie/2.Long_IDLE/i11.png',
         'img/1.Sharkie/2.Long_IDLE/i12.png',
         'img/1.Sharkie/2.Long_IDLE/i13.png',
-        'img/1.Sharkie/2.Long_IDLE/i14.png',
+        'img/1.Sharkie/2.Long_IDLE/i14.png'
+    ];
+
+    IMAGES_DEAD = [
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00000.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00001.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00002.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00003.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00004.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00005.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00006.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00007.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00008.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00009.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00010.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00011.png'
     ]
 
     world;
@@ -71,6 +94,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_FIN_SLAP);
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_LONG_IDLE);
+        this.loadImages(this.IMAGES_DEAD);
         this.applyGravity();
         this.animate();
 
@@ -106,21 +130,26 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIMMING);
-            };
+            } else if (!this.world.keyboard.SPACE || !this.world.keyboard.RIGHT || !this.world.keyboard.LEFT || !this.world.keyboard.UP || !this.world.keyboard.DOWN) {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            };  
         }, 200);
 
         setInterval(() => {
-            if (this.world.keyboard.SPACE) {
+            if (this.world.keyboard.SPACE && !this.isDead()) {
                 this.playAnimation(this.IMAGES_FIN_SLAP);
             };
         }, 10);
 
-        setInterval(() => {
+        /* setInterval(() => {
             if (!this.world.keyboard.SPACE || !this.world.keyboard.RIGHT || !this.world.keyboard.LEFT || !this.world.keyboard.UP || !this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIMMING);
             };
-        }, 200);
-    }; 
+        }, 200); */
+    };
 } 

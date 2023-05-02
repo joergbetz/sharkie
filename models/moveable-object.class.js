@@ -11,6 +11,14 @@ class MovableObject {
     goUp = false;
     speedY = 0;
     acceleration = 0.00;
+    energy = 100;
+
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        rigth: 0
+    };
 
     applyGravity() {
         setInterval(() => {
@@ -44,11 +52,33 @@ class MovableObject {
     }
 
     drawFrame(ctx) {
-        ctx.beginPath();
-        ctx.lineWidth = '5';
-        ctx.strokeStyle = "blue";
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.stroke();
+
+        if (this instanceof Character || this instanceof Pufferfish || this instanceof Jellyfish_green || this instanceof Jellyfish_lila || this instanceof Jellyfish_pink) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = "blue";
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+
+    }
+
+    isColliding (obj) {
+        return  (this.x + this.width - this.offset.right) >= obj.x && 
+            (this.x + this.offset.left) <= (obj.x + obj.width) && 
+            (this.y + this.height - this.offset.bottom) >= obj.y &&
+            (this.y + this.offset.top) <= (obj.y + obj.height) 
+    };
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0){
+            this.energy = 0;
+        };
+    }
+
+    isDead() {
+        return this.energy == 0;
     }
 
     moveRight() {
