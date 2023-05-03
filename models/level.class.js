@@ -2,7 +2,7 @@ class Level {
     enemies;
     backgroundObjects;
     level_end_x = 2150;
-    level_start_y = 20;
+    level_start_y = 120;
     level_end_y = 400;
     
     

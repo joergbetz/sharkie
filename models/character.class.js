@@ -70,6 +70,14 @@ class Character extends MovableObject {
         'img/1.Sharkie/2.Long_IDLE/i14.png'
     ];
 
+    IMAGES_HURT = [
+        'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/5.png'
+    ]
+
     IMAGES_DEAD = [
         'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00000.png',
         'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00001.png',
@@ -94,6 +102,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_FIN_SLAP);
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_LONG_IDLE);
+        this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.applyGravity();
         this.animate();
@@ -116,7 +125,7 @@ class Character extends MovableObject {
                 this.swimming_sound.play();
             }
 
-            if (this.world.keyboard.UP && this.y > -130) {
+            if (this.world.keyboard.UP && this.y > -20) {
                 this.y -= this.speed;
                 this.swimming_sound.play();
             }
@@ -133,6 +142,8 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+            } else if(this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else if (!this.world.keyboard.SPACE || !this.world.keyboard.RIGHT || !this.world.keyboard.LEFT || !this.world.keyboard.UP || !this.world.keyboard.DOWN) {
@@ -145,11 +156,5 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_FIN_SLAP);
             };
         }, 10);
-
-        /* setInterval(() => {
-            if (!this.world.keyboard.SPACE || !this.world.keyboard.RIGHT || !this.world.keyboard.LEFT || !this.world.keyboard.UP || !this.world.keyboard.DOWN) {
-                this.playAnimation(this.IMAGES_SWIMMING);
-            };
-        }, 200); */
     };
 } 
