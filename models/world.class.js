@@ -27,11 +27,11 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkBobbbleShoot();
+            this.checkBubbleShoot();
         }, 200);
     }
 
-    checkBobbbleShoot(){
+    checkBubbleShoot(){
         if(this.keyboard.yButton){
             let bubble = new Bubble(this.character.x + 100, this.character.y + 150);
             this.bubbles.push(bubble);

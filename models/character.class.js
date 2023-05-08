@@ -32,6 +32,16 @@ class Character extends MovableObject {
         'img/1.Sharkie/4.Attack/Fin slap/8.png'
     ];
 
+    IMAGES_BUBBLE = [
+        'img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/1.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/2.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/3.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/4.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/5.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/6.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/7.png',
+    ];
+
     IMAGES_IDLE = [
         'img/1.Sharkie/1.IDLE/1.png',
         'img/1.Sharkie/1.IDLE/2.png',
@@ -104,6 +114,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_LONG_IDLE);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_BUBBLE);
         this.applyGravity();
         this.animate();
 
@@ -139,7 +150,6 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if(this.isHurt()) {
@@ -156,5 +166,21 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_FIN_SLAP);
             };
         }, 10);
+
+        for (let i = 0; i < 20 ; i++){
+            setInterval(()=>{
+                if (this.world.keyboard.yButton && !this.isDead()) {
+                        this.playAnimation(this.IMAGES_BUBBLE);
+                };
+            }, 150 )
+        };
+
+        /* if (this.world.keyboard.UP && !this.isDead()) {
+            for (let i = 0; i < 30; i++){
+                setInterval(()=> {
+                    this.playAnimation(this.IMAGES_BUBBLE);
+                },200)
+            };
+        }; */
     };
 } 
