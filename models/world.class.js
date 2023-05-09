@@ -17,7 +17,6 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-
     }
 
     setWorld() {
@@ -32,12 +31,12 @@ class World {
     }
 
     checkBubbleShoot(){
-        if(this.keyboard.yButton){
-            let bubble = new Bubble(this.character.x + 100, this.character.y + 150);
-            console.log('character-x:'+this.character.x);
-            console.log('character-y:'+this.character.y);
+        
+        if(this.character.bubbleShoot){
+            let bubble = new Bubble(this.character.x + 150, this.character.y + 150);
             this.bubbles.push(bubble);
-        }
+            this.character.bubbleShoot = false;
+        };
     }
 
     checkCollisions(){

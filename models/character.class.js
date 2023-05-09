@@ -117,6 +117,9 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_BUBBLE);
         this.applyGravity();
         this.animate();
+        this.bubbleShoot = false;
+        this.delayTime;
+        this.startTime = new Date().getTime();
 
     }
 
@@ -152,13 +155,13 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if(this.isHurt()) {
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else if (!this.world.keyboard.SPACE || !this.world.keyboard.RIGHT || !this.world.keyboard.LEFT || !this.world.keyboard.UP || !this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIMMING);
-            };  
+            };
         }, 200);
 
         setInterval(() => {
@@ -167,10 +170,13 @@ class Character extends MovableObject {
             };
         }, 10);
 
-        setInterval(()=> {
-            if (this.world.keyboard.yButton && !this.isDead()) {
+        setInterval(() => {
+            this.delayTime = new Date().getTime() - this.startTime;
+            if (this.world.keyboard.yButton && !this.isDead() && !this.bubbleShoot && this.delayTime > 1500) {
                 this.playAnimation(this.IMAGES_BUBBLE);
-        };
-        }, 150);
+                this.bubbleShoot = true;
+                this.startTime = new Date().getTime();
+            };
+        }, 60);
     };
 } 
