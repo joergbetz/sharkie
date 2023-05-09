@@ -34,6 +34,8 @@ class World {
     checkBubbleShoot(){
         if(this.keyboard.yButton){
             let bubble = new Bubble(this.character.x + 100, this.character.y + 150);
+            console.log('character-x:'+this.character.x);
+            console.log('character-y:'+this.character.y);
             this.bubbles.push(bubble);
         }
     }
