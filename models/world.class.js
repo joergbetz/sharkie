@@ -11,6 +11,7 @@ class World {
     bubbles = [];
     poisonBubbles = [];
     shootLeft = false;
+    collision;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -78,11 +79,23 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                console.log (enemy.acceleration);
+                this.checkEnemy(enemy);
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             };
         });
+    }
+
+    checkEnemy(enemy) {
+        if (enemy.height == 80) {
+            this.collision = 'jellyfish'
+        };
+        if (enemy.height == 85) {
+            this.collision = 'pufferfish';
+        }
+        if (enemy.height == 400) {
+            this.collision = 'endboss';
+        }
     }
 
     draw() {

@@ -1,6 +1,6 @@
 class Pufferfish extends MovableObject {
 
-    height = 80;
+    height = 85;
     width = 50;
 
     IMAGES_SWIMMING = [
