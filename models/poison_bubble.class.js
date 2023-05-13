@@ -1,18 +1,18 @@
-class Bubble extends MovableObject {
+class PoisonBubble extends MovableObject {
 
     width = 50;
     height = 50;
 
     constructor(x, y) {
-        super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
+        super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png');
         this.x = x + world.camera_x;
         this.y = y;
-        this.shoot();
+        this.poisonShoot();
     };
 
 
 
-    shoot() {
+    poisonShoot() {
         setInterval(() => {
             if (world.shootLeft) {
                 this.x -= 10;

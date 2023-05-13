@@ -88,6 +88,11 @@ class Character extends MovableObject {
         'img/1.Sharkie/5.Hurt/1.Poisoned/5.png'
     ]
 
+    IMAGES_ELECTRIC_SHOCK = [
+        'img/1.Sharkie/5.Hurt/2.Electric shock/.o1.png',
+        'img/1.Sharkie/5.Hurt/2.Electric shock/.o2.png'
+    ]
+
     IMAGES_DEAD = [
         'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00000.png',
         'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00001.png',
@@ -118,8 +123,12 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
         this.bubbleShoot = false;
+        this.poisonBubbleShoot = false;
         this.delayTime;
         this.startTime = new Date().getTime();
+        this.startTimePoison = new Date().getTime();
+        this.finSlap = false;
+        this.otherDirection = false;
 
     }
 
@@ -161,11 +170,13 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else if (!this.world.keyboard.SPACE || !this.world.keyboard.RIGHT || !this.world.keyboard.LEFT || !this.world.keyboard.UP || !this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIMMING);
+                this.finSlap = false;
             };
         }, 200);
 
         setInterval(() => {
             if (this.world.keyboard.SPACE && !this.isDead()) {
+                this.finSlap = true;
                 this.playAnimation(this.IMAGES_FIN_SLAP);
             };
         }, 10);
@@ -176,6 +187,15 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_BUBBLE);
                 this.bubbleShoot = true;
                 this.startTime = new Date().getTime();
+            };
+        }, 60);
+
+        setInterval(() => {
+            this.delayTimePoison = new Date().getTime() - this.startTimePoison;
+            if (this.world.keyboard.xButton && !this.isDead() && !this.poisonBubbleShoot && this.delayTimePoison > 1500) {
+                this.playAnimation(this.IMAGES_BUBBLE);
+                this.poisonBubbleShoot = true;
+                this.startTimePoison = new Date().getTime();
             };
         }, 60);
     };

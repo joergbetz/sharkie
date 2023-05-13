@@ -9,6 +9,8 @@ class World {
     statusBarCoins = new StatusBarCoins();
     statusBarPoisson = new StatusBarPoisson();
     bubbles = [];
+    poisonBubbles = [];
+    shootLeft = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -27,25 +29,60 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkBubbleShoot();
+            this.checkPoisonBubbleShoot();
         }, 200);
     }
 
-    checkBubbleShoot(){
-        
-        if(this.character.bubbleShoot){
+    checkBubbleShoot() {
+
+        if (this.character.bubbleShoot) {
             let bubble = new Bubble(this.character.x + 150, this.character.y + 150);
             this.bubbles.push(bubble);
             this.character.bubbleShoot = false;
+            this.removeBubbleAfterFewSeconds(bubble);
+            this.checkShootDirection();
         };
     }
 
-    checkCollisions(){
+    checkPoisonBubbleShoot() {
+
+        if (this.character.poisonBubbleShoot) {
+            let poisonBubble = new PoisonBubble(this.character.x + 150, this.character.y + 150);
+            this.poisonBubbles.push(poisonBubble);
+            this.character.poisonBubbleShoot = false;
+            this.removePoisonBubbleAfterFewSeconds(poisonBubble);
+            this.checkShootDirection();
+        };
+    }
+
+    checkShootDirection() {
+        if (this.character.otherDirection) {
+            this.shootLeft = true;
+        } else {
+            this.shootLeft = false;
+        }
+    }
+
+    removeBubbleAfterFewSeconds(bubble) {
+        setTimeout(() => {
+            this.bubbles.splice(bubble, 1);
+        }, 1500);
+    }
+
+    removePoisonBubbleAfterFewSeconds(poisonBubble) {
+        setTimeout(() => {
+            this.poisonBubbles.splice(poisonBubble, 1);
+        }, 1500);
+    }
+
+    checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) ) {
-             this.character.hit();
-             this.statusBar.setPercentage(this.character.energy);
+            if (this.character.isColliding(enemy)) {
+                console.log (enemy.acceleration);
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
             };
-         });
+        });
     }
 
     draw() {
@@ -53,13 +90,15 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.poisonVessels);
         this.addToMap(this.character);
-        
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBarCoins);
         this.addToMap(this.statusBarPoisson);
         this.addObjectsToMap(this.bubbles);
+        this.addObjectsToMap(this.poisonBubbles);
         /* this.ctx.translate(+this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0); */
 
