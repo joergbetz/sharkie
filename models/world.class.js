@@ -31,6 +31,8 @@ class World {
             this.checkCollisions();
             this.checkBubbleShoot();
             this.checkPoisonBubbleShoot();
+            this.characterHasCollectedCoin();
+            this.characterHasCollectedPoisonVessel();
         }, 200);
     }
 
@@ -97,6 +99,47 @@ class World {
             this.collision = 'endboss';
         }
     }
+
+    characterHasCollectedCoin() {
+        this.level.coins.forEach(coin => {
+            if (this.character.isColliding(coin)) {
+                /* playSoundCoinCollected(); */
+                this.findIndexFromCoins(coin);
+                /* this.character.raiseProgressFromProgressbarCoin(); */
+                /* this.prorgressBarCoin.updateProgressbar(this.character.porgressCoin); */
+            }
+        });
+    }
+
+    findIndexFromCoins(indexFromCoin) {
+        let index = this.level.coins.indexOf(indexFromCoin);
+        this.coinIsCollected(index);
+    }
+
+    coinIsCollected(index) {
+        this.level.coins.splice(index, 1);
+    }
+
+    characterHasCollectedPoisonVessel() {
+        this.level.poisonVessels.forEach(poisonVessel => {
+            if (this.character.isColliding(poisonVessel)) {
+                /* playSoundCoinCollected(); */
+                this.findIndexFromPoisonVessel(poisonVessel);
+                /* this.character.raiseProgressFromProgressbarCoin(); */
+                /* this.prorgressBarCoin.updateProgressbar(this.character.porgressCoin); */
+            }
+        });
+    }
+
+    findIndexFromPoisonVessel(indexFromPoisonVessel) {
+        let index = this.level.poisonVessels.indexOf(indexFromPoisonVessel);
+        this.poisonVesselIsCollected(index);
+    }
+
+    poisonVesselIsCollected(index) {
+        this.level.poisonVessels.splice(index, 1);
+    }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

@@ -89,8 +89,9 @@ class Character extends MovableObject {
     ]
 
     IMAGES_ELECTRIC_SHOCK = [
-        'img/1.Sharkie/5.Hurt/2.Electric shock/.o1.png',
-        'img/1.Sharkie/5.Hurt/2.Electric shock/.o2.png'
+        'img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
+        'img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
+        'img/1.Sharkie/5.Hurt/2.Electric shock/3.png'
     ]
 
     IMAGES_DEAD = [
@@ -118,6 +119,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_LONG_IDLE);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_ELECTRIC_SHOCK);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_BUBBLE);
         this.applyGravity();
@@ -165,7 +167,11 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
+                if (world.collision == 'jellyfish') {
+                    this.playAnimation(this.IMAGES_ELECTRIC_SHOCK);
+                }else {
+                    this.playAnimation(this.IMAGES_HURT);
+                }
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else if (!this.world.keyboard.SPACE || !this.world.keyboard.RIGHT || !this.world.keyboard.LEFT || !this.world.keyboard.UP || !this.world.keyboard.DOWN) {
