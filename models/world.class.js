@@ -33,6 +33,7 @@ class World {
             this.checkPoisonBubbleShoot();
             this.characterHasCollectedCoin();
             this.characterHasCollectedPoisonVessel();
+            this.checkBubbleCollision();
         }, 200);
     }
 
@@ -100,19 +101,33 @@ class World {
         }
     }
 
+    checkBubbleCollision() {
+        this.level.enemies.forEach((enemy) => {
+            this.bubbles.forEach((bubble) => {
+                if (bubble.isColliding(enemy)) {
+                    this.checkEnemy(enemy);
+                    if (this.collision == 'jellyfish') {
+                        let index = this.level.enemies.enemy;
+                        this.level.enemies.splice(index, 1);
+                    }
+                }
+            })
+        });
+    }
+
     characterHasCollectedCoin() {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
                 /* playSoundCoinCollected(); */
-                this.findIndexFromCoins(coin);
+                this.findIndexOfCoins(coin);
                 /* this.character.raiseProgressFromProgressbarCoin(); */
                 /* this.prorgressBarCoin.updateProgressbar(this.character.porgressCoin); */
             }
         });
     }
 
-    findIndexFromCoins(indexFromCoin) {
-        let index = this.level.coins.indexOf(indexFromCoin);
+    findIndexOfCoins(indexOfCoin) {
+        let index = this.level.coins.indexOf(indexOfCoin);
         this.coinIsCollected(index);
     }
 
@@ -124,15 +139,15 @@ class World {
         this.level.poisonVessels.forEach(poisonVessel => {
             if (this.character.isColliding(poisonVessel)) {
                 /* playSoundCoinCollected(); */
-                this.findIndexFromPoisonVessel(poisonVessel);
+                this.findIndexOfPoisonVessel(poisonVessel);
                 /* this.character.raiseProgressFromProgressbarCoin(); */
                 /* this.prorgressBarCoin.updateProgressbar(this.character.porgressCoin); */
             }
         });
     }
 
-    findIndexFromPoisonVessel(indexFromPoisonVessel) {
-        let index = this.level.poisonVessels.indexOf(indexFromPoisonVessel);
+    findIndexOfPoisonVessel(indexOfPoisonVessel) {
+        let index = this.level.poisonVessels.indexOf(indexOfPoisonVessel);
         this.poisonVesselIsCollected(index);
     }
 

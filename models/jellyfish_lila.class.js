@@ -10,9 +10,17 @@ class Jellyfish_lila extends MovableObject {
         'img/2.Enemy/2 Jelly fish/Regular damage/Lila 4.png',
     ];
 
+    IMAGES_DEAD = [
+        'img/2.Enemy/2 Jelly fish/Dead/Lila/L1.png',
+        'img/2.Enemy/2 Jelly fish/Dead/Lila/L2.png',
+        'img/2.Enemy/2 Jelly fish/Dead/Lila/L3.png',
+        'img/2.Enemy/2 Jelly fish/Dead/Lila/L4.png'
+    ];
+
     constructor() {
         super().loadImage('img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png');
         this.loadImages(this.IMAGES_SWIMMING);
+        this.loadImages(this.IMAGES_DEAD);
 
         this.x = 500;
         this.y = 50;
