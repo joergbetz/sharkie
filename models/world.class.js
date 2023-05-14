@@ -40,7 +40,7 @@ class World {
     checkBubbleShoot() {
 
         if (this.character.bubbleShoot) {
-            let bubble = new Bubble(this.character.x + 150, this.character.y + 150);
+            let bubble = new Bubble(this.character.x + this.character.width, this.character.y + this.character.height/2);
             this.bubbles.push(bubble);
             this.character.bubbleShoot = false;
             this.removeBubbleAfterFewSeconds(bubble);
@@ -102,10 +102,12 @@ class World {
     }
 
     checkBubbleCollision() {
-        console.log ('checkBubbleCollision() called');
         this.level.enemies.forEach((enemy) => {
-            /* console.log(enemy); */
             this.bubbles.forEach((bubble) => {
+                console.log(enemy);
+                console.log(bubble);
+                console.log(this.character);
+                /* console.log(this.camera_x); */
                 if (bubble.isColliding(enemy)) {
                     this.checkEnemy(enemy);
                     console.log('vor If Abfrage '+this.collision);
@@ -174,8 +176,8 @@ class World {
         this.addToMap(this.statusBarPoisson);
         this.addObjectsToMap(this.bubbles);
         this.addObjectsToMap(this.poisonBubbles);
-        /* this.ctx.translate(+this.camera_x, 0);
-        this.ctx.translate(-this.camera_x, 0); */
+        /* this.ctx.translate(+this.camera_x, 0); */
+        /* this.ctx.translate(-this.camera_x, 0); */
 
         //Draw() wird immer wieder aufgerufen
         let self = this;
