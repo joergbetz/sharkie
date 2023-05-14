@@ -1,5 +1,7 @@
 class Level {
-    enemies;
+    jellyfishes;
+    pufferfishes;
+    endbosses;
     backgroundObjects;
     coins;
     poisonVessels;
@@ -8,8 +10,10 @@ class Level {
     level_end_y = 400;
     
     
-    constructor(enemies, backgroundObjects, coins, poisonVessels) {
-        this.enemies = enemies;
+    constructor(jellyfishes, pufferfishes, endbosses, backgroundObjects, coins, poisonVessels) {
+        this.jellyfishes = jellyfishes;
+        this.pufferfishes = pufferfishes;
+        this.endbosses = endbosses;
         this.backgroundObjects = backgroundObjects;
         this.coins = coins;
         this.poisonVessels = poisonVessels;

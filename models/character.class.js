@@ -8,7 +8,7 @@ class Character extends MovableObject {
     offset = {
         top: 130,
         bottom: 70,
-        left: 40,
+        left: 80,
         right: 40
     };
 
@@ -169,27 +169,31 @@ class Character extends MovableObject {
             } else if (this.isHurt()) {
                 if (world.collision == 'jellyfish') {
                     this.playAnimation(this.IMAGES_ELECTRIC_SHOCK);
-                }else {
+                } else {
                     this.playAnimation(this.IMAGES_HURT);
                 }
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIMMING);
-            } else if (!this.world.keyboard.SPACE || !this.world.keyboard.RIGHT || !this.world.keyboard.LEFT || !this.world.keyboard.UP || !this.world.keyboard.DOWN) {
-                this.playAnimation(this.IMAGES_SWIMMING);
+            } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE) {
+                this.playAnimation(this.IMAGES_IDLE)
                 this.finSlap = false;
             };
         }, 200);
 
         setInterval(() => {
+            this.delayTime = new Date().getTime() - this.startTime;
             if (this.world.keyboard.SPACE && !this.isDead()) {
-                this.finSlap = true;
+                /* this.currentImage = 0; */
                 this.playAnimation(this.IMAGES_FIN_SLAP);
+                this.finSlap = true;
+                this.startTime = new Date().getTime();
             };
         }, 10);
 
         setInterval(() => {
             this.delayTime = new Date().getTime() - this.startTime;
-            if (this.world.keyboard.yButton && !this.isDead() && !this.bubbleShoot && this.delayTime > 1500) {
+            if (this.world.keyboard.yButton && !this.isDead() && !this.bubbleShoot && this.delayTime > 1000) {
+                /* this.currentImage = 0; */
                 this.playAnimation(this.IMAGES_BUBBLE);
                 this.bubbleShoot = true;
                 this.startTime = new Date().getTime();
@@ -198,7 +202,8 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.delayTimePoison = new Date().getTime() - this.startTimePoison;
-            if (this.world.keyboard.xButton && !this.isDead() && !this.poisonBubbleShoot && this.delayTimePoison > 1500) {
+            if (this.world.keyboard.xButton && !this.isDead() && !this.poisonBubbleShoot && this.delayTimePoison > 1000) {
+                /* this.currentImage = 0; */
                 this.playAnimation(this.IMAGES_BUBBLE);
                 this.poisonBubbleShoot = true;
                 this.startTimePoison = new Date().getTime();
