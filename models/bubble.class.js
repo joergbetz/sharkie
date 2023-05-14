@@ -4,10 +4,10 @@ class Bubble extends MovableObject {
     height = 50;
 
     offset = {
-        top: 130,
-        bottom: 70,
-        left: 40,
-        right: 40
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
     };
 
     constructor(x, y) {

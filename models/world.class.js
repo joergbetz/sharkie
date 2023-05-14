@@ -102,11 +102,15 @@ class World {
     }
 
     checkBubbleCollision() {
+        console.log ('checkBubbleCollision() called');
         this.level.enemies.forEach((enemy) => {
+            /* console.log(enemy); */
             this.bubbles.forEach((bubble) => {
                 if (bubble.isColliding(enemy)) {
                     this.checkEnemy(enemy);
+                    console.log('vor If Abfrage '+this.collision);
                     if (this.collision == 'jellyfish') {
+                        console.log('nach If Abfrage '+this.collision);
                         let index = this.level.enemies.enemy;
                         this.level.enemies.splice(index, 1);
                     }
