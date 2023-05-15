@@ -25,12 +25,14 @@ class Jellyfish_pink extends MovableObject {
         this.x = 1400;
         this.y = 50;
         this.speed = 0.5;
-
-        this.animate();
+        setTimeout(() => {
+            this.animate();
+        }, 1000);
+        
     }
 
     animate() {
-        this.moveUp();
+        this.moveUpJellyPink();
 
         setInterval(() => {
             if (!world.jellyfishPinkDead) {

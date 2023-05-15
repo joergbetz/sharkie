@@ -120,17 +120,14 @@ class World {
         this.level.jellyfishes.forEach((jellyfish) => {
             this.bubbles.forEach((bubble) => {
                 if (bubble.isColliding(jellyfish)) {
-                    let position = level1.jellyfishes.indexOf(jellyfish);
-                    /* let index = this.level.jellyfishes.jellyfish; */
-                    this.jellyfishIsDead(position);
-                    /* this.level.jellyfishes.splice(index, 1); */
+                    let index= level1.jellyfishes.indexOf(jellyfish);
+                    this.jellyfishIsDead(index);
                 }
             })
         });
     }
 
     jellyfishIsDead(index) {
-        console.log(index);
         switch (index) {
             case 0:
                 this.jellyfishLilaDead = true;
@@ -147,16 +144,28 @@ class World {
     checkFinslalCollision() {
         this.level.pufferfishes.forEach((pufferfish) => {
                 if (this.character.finSlap = true && this.character.isColliding(pufferfish)) {
-                    let index = this.level.pufferfishes.pufferfish;
+                    let index = level1.pufferfishes.indexOf(pufferfish);
                     this.pufferfishIsDead(index);
                 }
         });
     }
 
     pufferfishIsDead(index) {
-        this.pufferfishDeadAnimation = true;
-        this.level.pufferfishes.splice(index, 1);
+        switch (index) {
+            case 0:
+                this.pufferfishGreenDead = true;
+                break;
+            case 1:
+                this.pufferfishOrangeDead = true;
+                break;
+            case 2:
+                this.pufferfishRedDead = true;
+                break;
+        }
+        /* this.pufferfishDeadAnimation = true;
+        this.level.pufferfishes.splice(index, 1); */
     }
+        
 
     characterHasCollectedCoin() {
         this.level.coins.forEach(coin => {

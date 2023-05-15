@@ -25,12 +25,14 @@ class Jellyfish_green extends MovableObject {
         this.x = 1000;
         this.y = 50;
         this.speed = 0.5;
-
-        this.animate();
+        setTimeout(() => {
+            this.animate();  
+        }, 1000);
+        
     }
 
     animate() {
-        this.moveUp();
+        this.moveUpJellyGreen();
 
         setInterval(() => {
             if (!world.jellyfishGreenDead) {

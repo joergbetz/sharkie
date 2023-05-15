@@ -1,4 +1,4 @@
-class Pufferfish extends MovableObject {
+class Pufferfish_green extends MovableObject {
 
     height = 85;
     width = 50;
@@ -12,8 +12,7 @@ class Pufferfish extends MovableObject {
     ];
 
     IMAGES_DEAD = [
-        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going down to the floor after the Fin Slap attack).png',
-        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 3 (can animate by going down to the floor after the Fin Slap attack).png'
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 1 (can animate by going up).png'
     ]
 
     constructor() {
@@ -24,18 +23,20 @@ class Pufferfish extends MovableObject {
         this.x = 500 + Math.random() * 500;
         this.speed = 0.15 + Math.random() *0.25;
         this.y = 350;
-
-        this.animate();
+        setTimeout(() => {
+            this.animate();
+        }, 0);
+        
     }
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
+            this.moveLeftPufferGreen();
         }, 1000 / 60);
         
         
         setInterval(() => {
-            if (!world.pufferfishDeadAnimation) {
+            if (!world.pufferfishGreenDead) {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else {
                 this.playAnimation(this.IMAGES_DEAD);

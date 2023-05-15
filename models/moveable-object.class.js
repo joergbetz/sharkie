@@ -27,16 +27,16 @@ class MovableObject extends DrawableObject {
         return this.y < 240;
     }
 
-    isColliding (obj) {
-        return  (this.x + this.width - this.offset.right) >= obj.x && 
-            (this.x + this.offset.left) <= (obj.x + obj.width) && 
+    isColliding(obj) {
+        return (this.x + this.width - this.offset.right) >= obj.x &&
+            (this.x + this.offset.left) <= (obj.x + obj.width) &&
             (this.y + this.height - this.offset.bottom) >= obj.y &&
-            (this.y + this.offset.top) <= (obj.y + obj.height) 
+            (this.y + this.offset.top) <= (obj.y + obj.height)
     };
 
     hit() {
         this.energy -= 5;
-        if (this.energy < 0){
+        if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
@@ -44,8 +44,8 @@ class MovableObject extends DrawableObject {
     }
 
     isHurt() {
-       let timepassed = new Date().getTime() - this.lastHit;
-       return timepassed < 500;
+        let timepassed = new Date().getTime() - this.lastHit;
+        return timepassed < 500;
     }
 
     isDead() {
@@ -60,26 +60,85 @@ class MovableObject extends DrawableObject {
         this.x -= this.speed;
     }
 
-    moveUp() {
+    moveLeftPufferGreen() {
+        if (!world.pufferfishGreenDead) {
+            this.pufferMoveControl()
+        } else {
+            this.kickOut();
+        }
+    }
+
+    moveLeftPufferOrange() {
+        if (!world.pufferfishOrangeDead) {
+            this.pufferMoveControl()
+        } else {
+            this.kickOut();
+        }
+    }
+
+    moveLeftPufferRed() {
+        if (!world.pufferfishRedDead) {
+            this.pufferMoveControl()
+        } else {
+            this.kickOut();
+        }
+    }
+
+    pufferMoveControl(){
+        this.x -= this.speed;
+    }
+
+    kickOut() {
+        this.x -= this.speed * 30;
+        this.y -= this.speed * 50;
+    }
+
+    moveUpJellyLila() {
         setInterval(() => {
-                if (this.y < level1.level_start_y) {
-                    this.goUp = false;
-                }
-                if (this.y > level1.level_end_y) {
-                    this.goUp = true;
-                }
-                if (this.goUp) {
-                    this.y -= this.speed;
-                } else {
-                    this.y += this.speed;
-                }                         
+            if (!world.jellyfishLilaDead) {
+                this.jellyMoveControl()
+            } else {
+                this.flyOut();
+            }
         }, 1000 / 60);
     }
 
-    flyOut() {
+    moveUpJellyGreen() {
         setInterval(() => {
-            this.y -= this.speed * 3;
+            if (!world.jellyfishGreenDead) {
+                this.jellyMoveControl()
+            } else {
+                this.flyOut();
+            }
         }, 1000 / 60);
+    }
+
+    moveUpJellyPink() {
+        setInterval(() => {
+            if (!world.jellyfishPinkDead) {
+                this.jellyMoveControl();
+            } else {
+                this.flyOut();
+            }
+        }, 1000 / 60);
+    }
+
+    jellyMoveControl() {
+        if (this.y < level1.level_start_y) {
+            this.goUp = false;
+        }
+        if (this.y > level1.level_end_y) {
+            this.goUp = true;
+        }
+        if (this.goUp) {
+            this.y -= this.speed;
+        } else {
+            this.y += this.speed;
+        }
+    }
+
+    flyOut() {
+        this.y -= this.speed * 5;
     }
 
     playAnimation(images) {

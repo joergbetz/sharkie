@@ -32,8 +32,7 @@ class Jellyfish_lila extends MovableObject {
     }
 
     animate() {
-        this.moveUp();
-        /* this.flyOut(); */
+        this.moveUpJellyLila();
         
         setInterval(() => {
             if (!world.jellyfishLilaDead) {
