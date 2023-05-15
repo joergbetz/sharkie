@@ -62,17 +62,23 @@ class MovableObject extends DrawableObject {
 
     moveUp() {
         setInterval(() => {
-            if (this.y < level1.level_start_y) {
-                this.goUp = false;
-            }
-            if (this.y > level1.level_end_y) {
-                this.goUp = true;
-            }
-            if (this.goUp) {
-                this.y -= this.speed;
-            } else {
-                this.y += this.speed;
-            }
+                if (this.y < level1.level_start_y) {
+                    this.goUp = false;
+                }
+                if (this.y > level1.level_end_y) {
+                    this.goUp = true;
+                }
+                if (this.goUp) {
+                    this.y -= this.speed;
+                } else {
+                    this.y += this.speed;
+                }                         
+        }, 1000 / 60);
+    }
+
+    flyOut() {
+        setInterval(() => {
+            this.y -= this.speed * 3;
         }, 1000 / 60);
     }
 

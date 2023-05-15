@@ -33,7 +33,11 @@ class Jellyfish_green extends MovableObject {
         this.moveUp();
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_SWIMMING);
+            if (!world.jellyfishGreenDead) {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            } else {
+                this.playAnimation(this.IMAGES_DEAD);
+            }
         }, 300);
     }
 

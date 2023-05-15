@@ -19,6 +19,7 @@ class Pufferfish extends MovableObject {
     constructor() {
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
         this.loadImages(this.IMAGES_SWIMMING);
+        this.loadImages(this.IMAGES_DEAD);
 
         this.x = 500 + Math.random() * 500;
         this.speed = 0.15 + Math.random() *0.25;
@@ -32,9 +33,14 @@ class Pufferfish extends MovableObject {
             this.moveLeft();
         }, 1000 / 60);
         
-
+        
         setInterval(() => {
-            this.playAnimation(this.IMAGES_SWIMMING);
+            if (!world.pufferfishDeadAnimation) {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            } else {
+                this.playAnimation(this.IMAGES_DEAD);
+            }
+            
         }, 300);
     }
 }

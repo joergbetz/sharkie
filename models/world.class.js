@@ -12,6 +12,11 @@ class World {
     poisonBubbles = [];
     shootLeft = false;
     collision;
+    pufferfishDeadAnimation = false;
+    jellyfishLilaDead = false;
+    jellyfishGreenDead = false;
+    jellyfishPinkDead = false;
+    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -28,7 +33,6 @@ class World {
 
     run() {
         setInterval(() => {
-            /* this.checkCollisions(); */
             this.checkCollisionsPufferfishes();
             this.checkCollisionsJellyfishes();
             this.checkCollisionsEndbosses();
@@ -116,20 +120,42 @@ class World {
         this.level.jellyfishes.forEach((jellyfish) => {
             this.bubbles.forEach((bubble) => {
                 if (bubble.isColliding(jellyfish)) {
-                    let index = this.level.jellyfishes.jellyfish;
-                    this.level.jellyfishes.splice(index, 1);
+                    let position = level1.jellyfishes.indexOf(jellyfish);
+                    /* let index = this.level.jellyfishes.jellyfish; */
+                    this.jellyfishIsDead(position);
+                    /* this.level.jellyfishes.splice(index, 1); */
                 }
             })
         });
+    }
+
+    jellyfishIsDead(index) {
+        console.log(index);
+        switch (index) {
+            case 0:
+                this.jellyfishLilaDead = true;
+                break;
+            case 1:
+                this.jellyfishGreenDead = true;
+                break;
+            case 2:
+                this.jellyfishPinkDead = true;
+                break;
+        }
     }
 
     checkFinslalCollision() {
         this.level.pufferfishes.forEach((pufferfish) => {
                 if (this.character.finSlap = true && this.character.isColliding(pufferfish)) {
                     let index = this.level.pufferfishes.pufferfish;
-                    this.level.pufferfishes.splice(index, 1);
+                    this.pufferfishIsDead(index);
                 }
         });
+    }
+
+    pufferfishIsDead(index) {
+        this.pufferfishDeadAnimation = true;
+        this.level.pufferfishes.splice(index, 1);
     }
 
     characterHasCollectedCoin() {

@@ -182,8 +182,8 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.delayTime = new Date().getTime() - this.startTime;
+            
             if (this.world.keyboard.SPACE && !this.isDead()) {
-                /* this.currentImage = 0; */
                 this.playAnimation(this.IMAGES_FIN_SLAP);
                 this.finSlap = true;
                 this.startTime = new Date().getTime();
@@ -193,7 +193,6 @@ class Character extends MovableObject {
         setInterval(() => {
             this.delayTime = new Date().getTime() - this.startTime;
             if (this.world.keyboard.yButton && !this.isDead() && !this.bubbleShoot && this.delayTime > 1000) {
-                /* this.currentImage = 0; */
                 this.playAnimation(this.IMAGES_BUBBLE);
                 this.bubbleShoot = true;
                 this.startTime = new Date().getTime();
@@ -203,7 +202,6 @@ class Character extends MovableObject {
         setInterval(() => {
             this.delayTimePoison = new Date().getTime() - this.startTimePoison;
             if (this.world.keyboard.xButton && !this.isDead() && !this.poisonBubbleShoot && this.delayTimePoison > 1000) {
-                /* this.currentImage = 0; */
                 this.playAnimation(this.IMAGES_BUBBLE);
                 this.poisonBubbleShoot = true;
                 this.startTimePoison = new Date().getTime();

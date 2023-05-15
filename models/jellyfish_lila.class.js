@@ -25,15 +25,22 @@ class Jellyfish_lila extends MovableObject {
         this.x = 500;
         this.y = 50;
         this.speed = 0.5;
-
-        this.animate();
+        setTimeout(() => {
+            this.animate(); 
+        }, 1000);
+        
     }
 
     animate() {
         this.moveUp();
-
+        /* this.flyOut(); */
+        
         setInterval(() => {
-            this.playAnimation(this.IMAGES_SWIMMING);
+            if (!world.jellyfishLilaDead) {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            } else {
+                this.playAnimation(this.IMAGES_DEAD);
+            }
         }, 300);
     }
 

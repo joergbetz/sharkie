@@ -33,7 +33,11 @@ class Jellyfish_pink extends MovableObject {
         this.moveUp();
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_SWIMMING);
+            if (!world.jellyfishPinkDead) {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            } else {
+                this.playAnimation(this.IMAGES_DEAD);
+            }
         }, 300);
     }
 
