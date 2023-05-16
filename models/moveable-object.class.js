@@ -61,7 +61,7 @@ class MovableObject extends DrawableObject {
     }
 
     moveLeftPufferGreen() {
-        if (!world.pufferfishGreenDead) {
+        if (!level1.pufferfishes[0].pufferfishGreenDead) {
             this.pufferMoveControl()
         } else {
             this.kickOut();
@@ -69,7 +69,7 @@ class MovableObject extends DrawableObject {
     }
 
     moveLeftPufferOrange() {
-        if (!world.pufferfishOrangeDead) {
+        if (!level1.pufferfishes[1].pufferfishOrangeDead) {
             this.pufferMoveControl()
         } else {
             this.kickOut();
@@ -77,7 +77,7 @@ class MovableObject extends DrawableObject {
     }
 
     moveLeftPufferRed() {
-        if (!world.pufferfishRedDead) {
+        if (!level1.pufferfishes[2].pufferfishRedDead) {
             this.pufferMoveControl()
         } else {
             this.kickOut();
@@ -95,7 +95,7 @@ class MovableObject extends DrawableObject {
 
     moveUpJellyLila() {
         setInterval(() => {
-            if (!world.jellyfishLilaDead) {
+            if (!level1.jellyfishes[0].jellyfishLilaDead) {
                 this.jellyMoveControl()
             } else {
                 this.flyOut();
@@ -105,7 +105,7 @@ class MovableObject extends DrawableObject {
 
     moveUpJellyGreen() {
         setInterval(() => {
-            if (!world.jellyfishGreenDead) {
+            if (!level1.jellyfishes[1].jellyfishGreenDead) {
                 this.jellyMoveControl()
             } else {
                 this.flyOut();
@@ -115,7 +115,7 @@ class MovableObject extends DrawableObject {
 
     moveUpJellyPink() {
         setInterval(() => {
-            if (!world.jellyfishPinkDead) {
+            if (!level1.jellyfishes[2].jellyfishPinkDead) {
                 this.jellyMoveControl();
             } else {
                 this.flyOut();

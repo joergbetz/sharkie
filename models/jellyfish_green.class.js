@@ -2,6 +2,7 @@ class Jellyfish_green extends MovableObject {
 
     height = 80;
     width = 50;
+    jellyfishGreenDead = false;
 
     IMAGES_SWIMMING = [
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png',
@@ -25,17 +26,14 @@ class Jellyfish_green extends MovableObject {
         this.x = 1000;
         this.y = 50;
         this.speed = 0.5;
-        setTimeout(() => {
-            this.animate();  
-        }, 1000);
-        
+        this.animate();
     }
 
     animate() {
         this.moveUpJellyGreen();
 
         setInterval(() => {
-            if (!world.jellyfishGreenDead) {
+            if (!this.jellyfishGreenDead) {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else {
                 this.playAnimation(this.IMAGES_DEAD);

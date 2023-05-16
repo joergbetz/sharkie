@@ -2,6 +2,7 @@ class Pufferfish_green extends MovableObject {
 
     height = 85;
     width = 50;
+    pufferfishGreenDead = false;
 
     IMAGES_SWIMMING = [
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
@@ -21,27 +22,24 @@ class Pufferfish_green extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
 
         this.x = 500 + Math.random() * 500;
-        this.speed = 0.15 + Math.random() *0.25;
+        this.speed = 0.15 + Math.random() * 0.25;
         this.y = 350;
-        setTimeout(() => {
-            this.animate();
-        }, 0);
-        
+        this.animate();
     }
 
     animate() {
         setInterval(() => {
             this.moveLeftPufferGreen();
         }, 1000 / 60);
-        
-        
+
+
         setInterval(() => {
-            if (!world.pufferfishGreenDead) {
+            if (!this.pufferfishGreenDead) {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else {
                 this.playAnimation(this.IMAGES_DEAD);
             }
-            
+
         }, 300);
     }
 }

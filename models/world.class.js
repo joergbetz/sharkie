@@ -13,9 +13,9 @@ class World {
     shootLeft = false;
     collision;
     pufferfishDeadAnimation = false;
-    jellyfishLilaDead = false;
-    jellyfishGreenDead = false;
-    jellyfishPinkDead = false;
+    
+    
+    
     
 
     constructor(canvas, keyboard) {
@@ -130,13 +130,13 @@ class World {
     jellyfishIsDead(index) {
         switch (index) {
             case 0:
-                this.jellyfishLilaDead = true;
+                level1.jellyfishes[index].jellyfishLilaDead = true;
                 break;
             case 1:
-                this.jellyfishGreenDead = true;
+                level1.jellyfishes[index].jellyfishGreenDead = true;
                 break;
             case 2:
-                this.jellyfishPinkDead = true;
+                level1.jellyfishes[index].jellyfishPinkDead = true;
                 break;
         }
     }
@@ -153,17 +153,15 @@ class World {
     pufferfishIsDead(index) {
         switch (index) {
             case 0:
-                this.pufferfishGreenDead = true;
+                level1.pufferfishes[index].pufferfishGreenDead = true;
                 break;
             case 1:
-                this.pufferfishOrangeDead = true;
+                level1.pufferfishes[index].pufferfishOrangeDead = true;
                 break;
             case 2:
-                this.pufferfishRedDead = true;
+                level1.pufferfishes[index].pufferfishRedDead = true;
                 break;
         }
-        /* this.pufferfishDeadAnimation = true;
-        this.level.pufferfishes.splice(index, 1); */
     }
         
 
