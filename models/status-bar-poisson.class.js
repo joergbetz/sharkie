@@ -1,14 +1,14 @@
 class StatusBarPoisson extends DrawableObject {
     IMAGES = [
         'img/4. Marcadores/orange/0_ copia.png',
-        'img/4. Marcadores/orange/20_ copia.png',
+        'img/4. Marcadores/orange/20_copia.png',
         'img/4. Marcadores/orange/40_ copia.png',
         'img/4. Marcadores/orange/60_ copia.png',
         'img/4. Marcadores/orange/80_ copia.png',
         'img/4. Marcadores/orange/100_ copia.png',
     ];
 
-    percentage = 0;
+    collectedPoisonVessels = 0;
 
     constructor() {
         super();
@@ -20,14 +20,14 @@ class StatusBarPoisson extends DrawableObject {
         this.height = 40;
     };
 
-    setPercentage(percentage) {
-        this.percentage = percentage;
+    setPercentage(collectedPoisonVessels) {
+        this.collectedPoisonVessels = collectedPoisonVessels;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     };
 
     resolveImageIndex() {
-        return 5 ;
+        return  Math.ceil(this.collectedPoisonVessels / 2);
     }
 
 }

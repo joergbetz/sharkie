@@ -8,7 +8,7 @@ class StatusBarCoins extends DrawableObject {
         'img/4. Marcadores/orange/100_ copia 2.png'
     ];
 
-    percentage = 0;
+    collectedCoins = 0;
 
     constructor() {
         super();
@@ -20,14 +20,14 @@ class StatusBarCoins extends DrawableObject {
         this.height = 40;
     };
 
-    setPercentage(percentage) {
-        this.percentage = percentage;
+    setPercentage(collectedCoins) {
+        this.collectedCoins = collectedCoins;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     };
 
     resolveImageIndex() {
-        return 5 ;
+        return  Math.ceil(this.collectedCoins / 2);
     }
 
 }

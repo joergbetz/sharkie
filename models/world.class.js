@@ -169,9 +169,9 @@ class World {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
                 /* playSoundCoinCollected(); */
+                this.statusBarCoins.collectedCoins +=1;
+                this.statusBarCoins.setPercentage(this.statusBarCoins.collectedCoins);
                 this.findIndexOfCoins(coin);
-                /* this.character.raiseProgressFromProgressbarCoin(); */
-                /* this.prorgressBarCoin.updateProgressbar(this.character.porgressCoin); */
             }
         });
     }
@@ -189,9 +189,9 @@ class World {
         this.level.poisonVessels.forEach(poisonVessel => {
             if (this.character.isColliding(poisonVessel)) {
                 /* playSoundCoinCollected(); */
+                this.statusBarPoisson.collectedPoisonVessels +=1;
+                this.statusBarPoisson.setPercentage(this.statusBarPoisson.collectedPoisonVessels);
                 this.findIndexOfPoisonVessel(poisonVessel);
-                /* this.character.raiseProgressFromProgressbarCoin(); */
-                /* this.prorgressBarCoin.updateProgressbar(this.character.porgressCoin); */
             }
         });
     }
