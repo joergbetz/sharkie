@@ -187,6 +187,8 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_FIN_SLAP);
                 this.finSlap = true;
                 this.startTime = new Date().getTime();
+            } else {
+                this.finSlap = false;
             };
         }, 10);
 

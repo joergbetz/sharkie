@@ -143,11 +143,13 @@ class World {
 
     checkFinslalCollision() {
         this.level.pufferfishes.forEach((pufferfish) => {
-                if (this.character.finSlap = true && this.character.isColliding(pufferfish)) {
+            console.log(this.character.finSlap);
+                if (this.character.finSlap && this.character.isColliding(pufferfish)) {
                     let index = level1.pufferfishes.indexOf(pufferfish);
                     this.pufferfishIsDead(index);
                 }
         });
+        
     }
 
     pufferfishIsDead(index) {

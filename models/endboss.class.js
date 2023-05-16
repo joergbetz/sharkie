@@ -3,6 +3,7 @@ class Endboss extends MovableObject {
     height = 400;
     width = 400;
     y = 80;
+    hadFirstContact =false;
 
     IMAGES_SWIMMING = [
         'img/2.Enemy/3 Final Enemy/2.floating/1.png',
@@ -47,9 +48,20 @@ class Endboss extends MovableObject {
             this.moveLeft();
         }, 200);
         
+        let i = 0;
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_SWIMMING);
+            if (i < 10) {
+                this.playAnimation(this.IMAGES_APPEARS);
+            } else {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            }
+            i++;
+
+            if (world.character.x > 1600 && !this.hadFirstContact) {
+                i = 0;
+                this.hadFirstContact = true;
+            }
         }, 300);
     }
 }

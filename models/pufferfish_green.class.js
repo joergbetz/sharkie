@@ -39,7 +39,6 @@ class Pufferfish_green extends MovableObject {
             } else {
                 this.playAnimation(this.IMAGES_DEAD);
             }
-
         }, 300);
     }
 }
