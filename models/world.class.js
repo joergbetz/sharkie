@@ -14,10 +14,6 @@ class World {
     shootLeft = false;
     collision;
     pufferfishDeadAnimation = false;
-    
-    
-    
-    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -156,12 +152,17 @@ class World {
     }
 
     checkEnergyEndboss() {
-        level1.endbosses[0].hitEndboss();
-        this.statusBarEndboss.percentageEndboss -=21;
+        this.statusBarEndboss.percentageEndboss -=20;
         this.statusBarEndboss.setPercentage(this.statusBarEndboss.percentageEndboss);
+        this.showStatusBarEndboss();
+        if (this.statusBarEndboss.percentageEndboss == 0) {
+            level1.endbosses[0].endbossDead = true;
+        }
+    }
+
+    showStatusBarEndboss() {
         this.statusBarEndboss.x = 500;
         this.statusBarEndboss.y = 0;
-        /* level1.endbosses[0].endbossDead = true; */
     }
 
     checkFinslalCollision() {

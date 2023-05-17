@@ -203,7 +203,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.delayTimePoison = new Date().getTime() - this.startTimePoison;
-            if (this.world.keyboard.xButton && !this.isDead() && !this.poisonBubbleShoot && this.delayTimePoison > 1000) {
+            if (this.world.keyboard.xButton && !this.isDead() && !this.poisonBubbleShoot && !level1.endbosses[0].endbossDead && this.delayTimePoison > 1000) {
                 this.playAnimation(this.IMAGES_BUBBLE);
                 this.poisonBubbleShoot = true;
                 this.startTimePoison = new Date().getTime();
