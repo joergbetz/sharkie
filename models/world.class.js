@@ -8,6 +8,7 @@ class World {
     statusBar = new StatusBar();
     statusBarCoins = new StatusBarCoins();
     statusBarPoisson = new StatusBarPoisson();
+    statusBarEndboss = new StatusBarEndboss();
     bubbles = [];
     poisonBubbles = [];
     shootLeft = false;
@@ -42,6 +43,7 @@ class World {
             this.characterHasCollectedPoisonVessel();
             this.checkBubbleCollision();
             this.checkFinslalCollision();
+            this.checkPoisonBubbleCollision();
         }, 200);
     }
 
@@ -120,6 +122,7 @@ class World {
         this.level.jellyfishes.forEach((jellyfish) => {
             this.bubbles.forEach((bubble) => {
                 if (bubble.isColliding(jellyfish)) {
+                    this.bubbles.splice(bubble, 1);
                     let index= level1.jellyfishes.indexOf(jellyfish);
                     this.jellyfishIsDead(index);
                 }
@@ -141,9 +144,28 @@ class World {
         }
     }
 
+    checkPoisonBubbleCollision() {
+        this.level.endbosses.forEach((endboss) => {
+            this.poisonBubbles.forEach((poisonBubble) => {
+                if (poisonBubble.isColliding(endboss)) {
+                    this.poisonBubbles.splice(poisonBubble, 1);
+                    this.checkEnergyEndboss();
+                }
+            })
+        });
+    }
+
+    checkEnergyEndboss() {
+        level1.endbosses[0].hitEndboss();
+        this.statusBarEndboss.percentageEndboss -=21;
+        this.statusBarEndboss.setPercentage(this.statusBarEndboss.percentageEndboss);
+        this.statusBarEndboss.x = 500;
+        this.statusBarEndboss.y = 0;
+        /* level1.endbosses[0].endbossDead = true; */
+    }
+
     checkFinslalCollision() {
         this.level.pufferfishes.forEach((pufferfish) => {
-            console.log(this.character.finSlap);
                 if (this.character.finSlap && this.character.isColliding(pufferfish)) {
                     let index = level1.pufferfishes.indexOf(pufferfish);
                     this.pufferfishIsDead(index);
@@ -224,6 +246,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBarCoins);
         this.addToMap(this.statusBarPoisson);
+        this.addToMap(this.statusBarEndboss);
 
         //Draw() wird immer wieder aufgerufen
         let self = this;
