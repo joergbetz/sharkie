@@ -14,6 +14,9 @@ class World {
     shootLeft = false;
     collision;
     pufferfishDeadAnimation = false;
+    coinCollecting_sound = new Audio('audio/collecting.mp3');
+    poisonVesselCollecting_sound = new Audio('audio/biting.mp3');
+    xOffset;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -43,10 +46,19 @@ class World {
         }, 200);
     }
 
+    getX_Offset() {
+        if (this.character.otherDirection) {
+            this.xOffset = 0;
+        } else {
+            this.xOffset = 190;
+        };
+    }
+
     checkBubbleShoot() {
 
         if (this.character.bubbleShoot) {
-            let bubble = new Bubble(this.character.x + this.character.width, this.character.y + this.character.height / 2);
+            this.getX_Offset();
+            let bubble = new Bubble(this.character.x + this.xOffset, this.character.y + this.character.height / 2);
             this.bubbles.push(bubble);
             this.character.bubbleShoot = false;
             this.removeBubbleAfterFewSeconds(bubble);
@@ -57,7 +69,10 @@ class World {
     checkPoisonBubbleShoot() {
 
         if (this.character.poisonBubbleShoot) {
-            let poisonBubble = new PoisonBubble(this.character.x + this.character.width, this.character.y + this.character.height / 2);
+            this.statusBarPoisson.collectedPoisonVessels -=1;
+            this.statusBarPoisson.setPercentage(this.statusBarPoisson.collectedPoisonVessels);
+            this.getX_Offset();
+            let poisonBubble = new PoisonBubble(this.character.x + this.xOffset, this.character.y + this.character.height / 2);
             this.poisonBubbles.push(poisonBubble);
             this.character.poisonBubbleShoot = false;
             this.removePoisonBubbleAfterFewSeconds(poisonBubble);
@@ -193,7 +208,7 @@ class World {
     characterHasCollectedCoin() {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
-                /* playSoundCoinCollected(); */
+                this.coinCollecting_sound.play();
                 this.statusBarCoins.collectedCoins +=1;
                 this.statusBarCoins.setPercentage(this.statusBarCoins.collectedCoins);
                 this.findIndexOfCoins(coin);
@@ -213,7 +228,7 @@ class World {
     characterHasCollectedPoisonVessel() {
         this.level.poisonVessels.forEach(poisonVessel => {
             if (this.character.isColliding(poisonVessel)) {
-                /* playSoundCoinCollected(); */
+                this.poisonVesselCollecting_sound.play();
                 this.statusBarPoisson.collectedPoisonVessels +=1;
                 this.statusBarPoisson.setPercentage(this.statusBarPoisson.collectedPoisonVessels);
                 this.findIndexOfPoisonVessel(poisonVessel);
@@ -267,7 +282,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        /* mo.drawFrame(this.ctx); */
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }

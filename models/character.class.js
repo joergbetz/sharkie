@@ -2,7 +2,7 @@ class Character extends MovableObject {
 
     height = 300;
     y = 50;
-    speed = 10;
+    speed = 6;
     width = 250;
 
     offset = {
@@ -111,6 +111,10 @@ class Character extends MovableObject {
 
     world;
     swimming_sound = new Audio('audio/swimming.mp3');
+    bubble_sound = new Audio('audio/bubble-shoot.mp3');
+    poisonBubble_sound = new Audio('audio/bubble-shoot-2.mp3');
+    gameOver_sound = new Audio('audio/game-over.mp3');
+    finslap_sound = new Audio('audio/finslap.mp3');
 
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
@@ -131,10 +135,18 @@ class Character extends MovableObject {
         this.startTimePoison = new Date().getTime();
         this.finSlap = false;
         this.otherDirection = false;
+        this.playGameOverSound = false;
+        this.gameOverSoundPlayed = false;
 
     }
 
     animate() {
+        setInterval(() => {
+            if (this.playGameOverSound && !this.gameOverSoundPlayed) {
+                this.gameOver_sound.play();
+                this.gameOverSoundPlayed = true;
+            }
+        }, 200);
 
         setInterval(() => {
             this.swimming_sound.pause();
@@ -166,6 +178,7 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.playGameOverSound = true;
             } else if (this.isHurt()) {
                 if (world.collision == 'jellyfish') {
                     this.playAnimation(this.IMAGES_ELECTRIC_SHOCK);
@@ -186,6 +199,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.SPACE && !this.isDead()) {
                 this.playAnimation(this.IMAGES_FIN_SLAP);
                 this.finSlap = true;
+                this.finslap_sound .play();
                 this.startTime = new Date().getTime();
             } else {
                 this.finSlap = false;
@@ -196,6 +210,7 @@ class Character extends MovableObject {
             this.delayTime = new Date().getTime() - this.startTime;
             if (this.world.keyboard.yButton && !this.isDead() && !this.bubbleShoot && this.delayTime > 1000) {
                 this.playAnimation(this.IMAGES_BUBBLE);
+                this.bubble_sound.play();
                 this.bubbleShoot = true;
                 this.startTime = new Date().getTime();
             };
@@ -203,8 +218,9 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.delayTimePoison = new Date().getTime() - this.startTimePoison;
-            if (this.world.keyboard.xButton && !this.isDead() && !this.poisonBubbleShoot && !level1.endbosses[0].endbossDead && this.delayTimePoison > 1000) {
+            if (this.world.keyboard.xButton && !this.isDead() && world.statusBarPoisson.collectedPoisonVessels > 0 && !this.poisonBubbleShoot && !level1.endbosses[0].endbossDead && this.delayTimePoison > 1000) {
                 this.playAnimation(this.IMAGES_BUBBLE);
+                this.poisonBubble_sound.play();
                 this.poisonBubbleShoot = true;
                 this.startTimePoison = new Date().getTime();
             };
