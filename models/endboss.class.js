@@ -73,16 +73,20 @@ class Endboss extends MovableObject {
 
         setInterval(() => {
             if (i < 10) {
+                console.log('appears');
                 this.playAnimation(this.IMAGES_APPEARS);
             } else if (this.endbossDead){
+                console.log('dead');
                 this.speed = 0;
                 this.endboss_sound.pause();
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (world.character.gameOverSoundPlayed) {
+                console.log('sharkie dead');
                 this.speed = 0;
                 this.endboss_sound.pause();
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else {
+                console.log('attack')
                 this.playAnimation(this.IMAGES_ATTACK);
             }
             i++;

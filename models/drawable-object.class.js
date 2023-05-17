@@ -14,6 +14,7 @@ class DrawableObject {
     }
 
     loadImages(arr) {
+        this.currentImage = 0;
         arr.forEach(path => {
             let img = new Image();
             img.src = path;
