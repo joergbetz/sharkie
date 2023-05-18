@@ -91,12 +91,12 @@ class Endboss extends MovableObject {
             }
             i++;
 
-            if (world.character.x > 1600 && !this.hadFirstContact) {
+            if (world.character.x > 1700 && !this.hadFirstContact) {
                 i = 0;
                 this.hadFirstContact = true;
                 this.speed = 5;
                 this.endboss_sound.play();
             }
-        }, 300);
+        }, 200);
     }
 }
