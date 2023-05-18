@@ -7,6 +7,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
     background-image: url('img/3. Background/undersea.png');
     background-position: bottom;
     background-size: cover;
@@ -14,10 +15,92 @@ body{
     font-family: 'myLuckiestGuy-Regular', Arial, Helvetica, sans-serif;
 }
 
+main {
+    position: relative;
+}
+
 h1{
-    font-size: 64px;
+    font-size: 48px;
     letter-spacing: 3px;
     text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+    color: white;
+    border-radius: 20px;
+    border: 4px solid;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 60px;
+    padding-right: 60px;
+    background-color: #bf067f;
+}
+
+#icon_full_screen, #icon_exit_full_screen {
+    width: 30px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+#icon_full_screen:hover, #icon_exit_full_screen:hover {
+    transition: all 225ms ease-in-out;
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+#icon_sound_off, #icon_sound_on {
+    width: 30px;
+    position: absolute;
+    right: 65px;
+    top: 15px;
+}
+
+
+#icon_sound_off:hover, #icon_sound_on:hover {
+    transition: all 225ms ease-in-out;
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.d-none{
+    display: none !important;
+}
+
+
+
+.containerStartScreen {
+    background-image: url('img/3. Background/Dark/completo.png');
+    background-size: cover;
+    width: 720px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.imageSharkie {
+    width: 400px;
+    padding-bottom: 80px;
+}
+
+
+.containerBtn {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.btnStartScreen {
+    height: 95px;
+    width: 300px;
+    padding-bottom: 50px;
+}
+
+
+.btnStartScreen:hover {
+    transition: all 225ms ease-in-out;
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 canvas{
