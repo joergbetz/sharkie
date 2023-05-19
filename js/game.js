@@ -10,8 +10,28 @@ function init(){
 function startGame() {
     document.getElementById('startScreen').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
+    document.getElementById('wonScreen').classList.add('d-none');
+    document.getElementById('lostScreen').classList.add('d-none');
     initLevel1();
     init();
+}
+
+function restartGame() {
+    window.location.href = "index.html"
+}
+
+function wonGame() {
+    document.getElementById('startScreen').classList.add('d-none');
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('wonScreen').classList.remove('d-none');
+    document.getElementById('lostScreen').classList.add('d-none');
+}
+
+function lostGame() {
+    document.getElementById('startScreen').classList.add('d-none');
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('wonScreen').classList.add('d-none');
+    document.getElementById('lostScreen').classList.remove('d-none');
 }
 
 

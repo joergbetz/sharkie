@@ -56,10 +56,26 @@
 
         </canvas>
 
-        <div id="startScreen" class="containerStartScreen">
+        <div id="startScreen" class="containerStartScreen ">
             <img class="imageSharkie" src="img/1.Sharkie/1.IDLE/Prewiew.gif">
             <div class=containerBtn>
                 <img class="btnStartScreen" src="img/6.Botones/Start/4.png" onclick="startGame()">
+            </div>
+        </div>
+
+        <div id="wonScreen" class="containerWonScreen d-none">
+            <div class=containerBtn>
+                <img class="btnRestartScreen" src="img/6.Botones/Try again/Recurso 18.png" onclick="restartGame()">
+            </div>
+        </div>
+
+        <div id="lostScreen" class="containerLostScreen d-none">
+            <img class="imageDeadSharkie" src='img/1.Sharkie/6.dead/1.Poisoned/12.png'>
+            <div class="gameOver">
+                <img src="img/6.Botones/Tittles/Game Over/Recurso 13.png" alt="Game Over">
+            </div>
+            <div class=containerBtn>
+                <img class="btnStartScreen" src="img/6.Botones/Try again/Recurso 18.png" onclick="restartGame()">
             </div>
         </div>
 
