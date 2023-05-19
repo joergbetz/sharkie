@@ -103,6 +103,7 @@ class World {
     checkCollisionsPufferfishes() {
         this.level.pufferfishes.forEach((pufferfish) => {
             if (this.character.isColliding(pufferfish) && !this.character.finSlap) {
+                this.collision = 'pufferfish';
                 this.collisionConsequences();
             };
         });
@@ -111,6 +112,7 @@ class World {
     checkCollisionsJellyfishes() {
         this.level.jellyfishes.forEach((jellyfish) => {
             if (this.character.isColliding(jellyfish)) {
+                this.collision = 'jellyfish';
                 this.collisionConsequences();
             };
         })
@@ -119,6 +121,7 @@ class World {
     checkCollisionsEndbosses() {
         this.level.endbosses.forEach((endboss) => {
             if (this.character.isColliding(endboss)) {
+                this.collision = 'endboss';
                 this.collisionConsequences();
             };
         })
@@ -172,6 +175,8 @@ class World {
         this.showStatusBarEndboss();
         if (this.statusBarEndboss.percentageEndboss == 0) {
             level1.endbosses[0].endbossDead = true;
+        } else if (this.statusBarEndboss.percentageEndboss < 40) {
+            level1.endbosses[0].endbossIsHurt = true;
         }
     }
 

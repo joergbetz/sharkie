@@ -5,6 +5,7 @@ class Endboss extends MovableObject {
     y = 80;
     hadFirstContact =false;
     endbossDead = false;
+    endbossIsHurt = false;
 
     IMAGES_SWIMMING = [
         'img/2.Enemy/3 Final Enemy/2.floating/1.png',
@@ -44,6 +45,13 @@ class Endboss extends MovableObject {
         'img/2.Enemy/3 Final Enemy/Attack/6.png'
     ]
 
+    IMAGES_HURT = [
+        'img/2.Enemy/3 Final Enemy/Hurt/1.png',
+        'img/2.Enemy/3 Final Enemy/Hurt/2.png',
+        'img/2.Enemy/3 Final Enemy/Hurt/3.png',
+        'img/2.Enemy/3 Final Enemy/Hurt/4.png'
+    ]
+
     IMAGES_DEAD = [
         'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png',
         'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
@@ -59,6 +67,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_APPEARS);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_HURT);
         this.x = 2550;
         this.animate();
         this.speed = 0;
@@ -73,22 +82,21 @@ class Endboss extends MovableObject {
 
         setInterval(() => {
             if (i < 10) {
-                console.log('appears');
                 this.playAnimation(this.IMAGES_APPEARS);
             } else if (this.endbossDead){
-                console.log('dead');
                 wonGame();
                 this.speed = 0;
                 this.endboss_sound.pause();
                 this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.endbossIsHurt) {
+                this.playAnimation(this.IMAGES_HURT);
+                this.speed = 20;
             } else if (world.character.gameOverSoundPlayed) {
-                console.log('sharkie dead');
                 lostGame();
                 this.speed = 0;
                 this.endboss_sound.pause();
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else {
-                console.log('attack')
                 this.playAnimation(this.IMAGES_ATTACK);
             }
             i++;

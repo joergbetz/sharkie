@@ -140,6 +140,8 @@ class Character extends MovableObject {
 
     }
 
+    idleCounter = 0;
+
     animate() {
         setInterval(() => {
             if (this.playGameOverSound && !this.gameOverSoundPlayed) {
@@ -177,29 +179,36 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.isDead()) {
+                this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_DEAD);
                 this.playGameOverSound = true;
             } else if (this.isHurt()) {
+                this.idleCounter = 0;
                 if (world.collision == 'jellyfish') {
                     this.playAnimation(this.IMAGES_ELECTRIC_SHOCK);
                 } else {
                     this.playAnimation(this.IMAGES_HURT);
                 }
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+                this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_SWIMMING);
-            } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE) {
+            } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && this.idleCounter < 30) {
                 this.playAnimation(this.IMAGES_IDLE)
                 this.finSlap = false;
+                this.idleCounter++;
+            } else {
+                this.playAnimation(this.IMAGES_LONG_IDLE)
             };
         }, 200);
 
         setInterval(() => {
             this.delayTime = new Date().getTime() - this.startTime;
-            
+
             if (this.world.keyboard.SPACE && !this.isDead()) {
+                this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_FIN_SLAP);
                 this.finSlap = true;
-                this.finslap_sound .play();
+                this.finslap_sound.play();
                 this.startTime = new Date().getTime();
             } else {
                 this.finSlap = false;
