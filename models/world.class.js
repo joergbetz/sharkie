@@ -177,7 +177,7 @@ class World {
 
     showStatusBarEndboss() {
         this.statusBarEndboss.x = 500;
-        this.statusBarEndboss.y = 0;
+        this.statusBarEndboss.y = 40;
     }
 
     checkFinslalCollision() {

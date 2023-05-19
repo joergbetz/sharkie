@@ -54,7 +54,7 @@ class Endboss extends MovableObject {
     endboss_sound = new Audio('audio/danger.mp3');
 
     constructor() {
-        super().loadImage('img/2.Enemy/3 Final Enemy/2.floating/1.png');
+        super().loadImage('img/2.Enemy/3 Final Enemy/1.Introduce/1.png');
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_APPEARS);
         this.loadImages(this.IMAGES_DEAD);
@@ -95,6 +95,7 @@ class Endboss extends MovableObject {
                 i = 0;
                 this.hadFirstContact = true;
                 this.speed = 5;
+                world.showStatusBarEndboss();
                 this.endboss_sound.play();
             }
         }, 200);

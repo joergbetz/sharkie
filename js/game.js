@@ -7,6 +7,14 @@ function init(){
     world = new World(canvas, keyboard);
 }
 
+function startGame() {
+    document.getElementById('startScreen').classList.add('d-none');
+    document.getElementById('canvas').classList.remove('d-none');
+    initLevel1();
+    init();
+}
+
+
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {

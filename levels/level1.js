@@ -1,4 +1,7 @@
-const level1 = new Level(
+let level1;
+
+function initLevel1(){
+level1 = new Level(
     [
         new Jellyfish_lila(), 
         new Jellyfish_green(),
@@ -69,3 +72,4 @@ const level1 = new Level(
         new PoisonVessels('img/4. Marcadores/Posión/Animada/1.png', 2100, 400),
     ]
 );
+}
