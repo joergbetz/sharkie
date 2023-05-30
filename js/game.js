@@ -2,7 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard;
 
-function init(){
+function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 }
@@ -20,7 +20,12 @@ function restartGame() {
     window.location.href = "index.html"
 }
 
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
+
 function wonGame() {
+    clearAllIntervals();
     document.getElementById('startScreen').classList.add('d-none');
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('wonScreen').classList.remove('d-none');
@@ -28,17 +33,27 @@ function wonGame() {
 }
 
 function lostGame() {
+    clearAllIntervals();
     document.getElementById('startScreen').classList.add('d-none');
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('wonScreen').classList.add('d-none');
     document.getElementById('lostScreen').classList.remove('d-none');
 }
 
+function checkAspectRatio() {
+    if (window.orientation === 0) {
+        console.log('Hochformat')
+        console.log('Please rotate your device');
+    } else {
+        console.log('Querformat');
+    }
+}
 
+window.addEventListener('orientationchange', checkAspectRatio);
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {
-        keyboard.RIGHT= true;
+        keyboard.RIGHT = true;
     }
 
     if (e.keyCode == 37) {
@@ -51,8 +66,8 @@ window.addEventListener("keydown", (e) => {
 
     if (e.keyCode == 40) {
         keyboard.DOWN = true;
-    }    
-   
+    }
+
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
@@ -80,9 +95,9 @@ window.addEventListener('keyup', (e) => {
     }
 
     if (e.keyCode == 40) {
-        keyboard.DOWN= false;
-    }    
-   
+        keyboard.DOWN = false;
+    }
+
     if (e.keyCode == 32) {
         keyboard.SPACE = false;
     }

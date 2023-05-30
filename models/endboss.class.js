@@ -84,7 +84,9 @@ class Endboss extends MovableObject {
             if (i < 10) {
                 this.playAnimation(this.IMAGES_APPEARS);
             } else if (this.endbossDead){
-                wonGame();
+                setTimeout(() => {
+                    wonGame();
+                }, 5000);
                 this.speed = 0;
                 this.endboss_sound.pause();
                 this.playAnimation(this.IMAGES_DEAD);
@@ -92,7 +94,9 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT);
                 this.speed = 20;
             } else if (world.character.gameOverSoundPlayed) {
-                lostGame();
+                setTimeout(() => {
+                    lostGame();
+                }, 5000);
                 this.speed = 0;
                 this.endboss_sound.pause();
                 this.playAnimation(this.IMAGES_SWIMMING);

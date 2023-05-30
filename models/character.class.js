@@ -115,6 +115,7 @@ class Character extends MovableObject {
     poisonBubble_sound = new Audio('audio/bubble-shoot-2.mp3');
     gameOver_sound = new Audio('audio/game-over.mp3');
     finslap_sound = new Audio('audio/finslap.mp3');
+    snoring_sound = new Audio('audio/snoring.mp3');
 
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
@@ -197,7 +198,8 @@ class Character extends MovableObject {
                 this.finSlap = false;
                 this.idleCounter++;
             } else {
-                this.playAnimation(this.IMAGES_LONG_IDLE)
+                this.playAnimation(this.IMAGES_LONG_IDLE);
+                this.snoring_sound.play();
             };
         }, 200);
 
@@ -218,6 +220,7 @@ class Character extends MovableObject {
         setInterval(() => {
             this.delayTime = new Date().getTime() - this.startTime;
             if (this.world.keyboard.yButton && !this.isDead() && !this.bubbleShoot && this.delayTime > 1000) {
+                this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_BUBBLE);
                 this.bubble_sound.play();
                 this.bubbleShoot = true;
@@ -228,6 +231,7 @@ class Character extends MovableObject {
         setInterval(() => {
             this.delayTimePoison = new Date().getTime() - this.startTimePoison;
             if (this.world.keyboard.xButton && !this.isDead() && world.statusBarPoisson.collectedPoisonVessels > 0 && !this.poisonBubbleShoot && !level1.endbosses[0].endbossDead && this.delayTimePoison > 1000) {
+                this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_BUBBLE);
                 this.poisonBubble_sound.play();
                 this.poisonBubbleShoot = true;
