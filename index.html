@@ -42,7 +42,7 @@
     <script src="js/game.js"></script>
 </head>
 
-<body onload="checkRatio()">
+<body onload="checkAspectRatio()">
 
     <h1>Sharky</h1>
 
@@ -58,9 +58,14 @@
 
         <div id="startScreen" class="containerStartScreen ">
             <img class="imageSharkie" src="img/1.Sharkie/1.IDLE/Prewiew.gif">
+            <div class="description">
+                <span>Use arrow keys to move  |  Space = finslap </span>
+                <span> y = bubble shoot  |  x = poison bubble shoot</span>
+            </div>
             <div class=containerBtn>
                 <img class="btnStartScreen" src="img/6.Botones/Start/4.png" onclick="startGame()">
             </div>
+           
         </div>
 
         <div id="wonScreen" class="containerWonScreen d-none">

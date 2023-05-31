@@ -48,6 +48,20 @@ function checkAspectRatio() {
         console.log('Querformat');
     }
 }
+function toggleSound() {
+    document.getElementById('icon_sound_off').classList.toggle('d-none');
+    document.getElementById('icon_sound_on').classList.toggle('d-none');
+    if (document.getElementById('icon_sound_off').classList.contains('d-none')) {
+        console.log('play sound');
+    } else {
+        console.log('sound off');
+    }
+}
+
+function toggleScreenSize() {
+    document.getElementById('icon_full_screen').classList.toggle('d-none');
+    document.getElementById('icon_exit_full_screen').classList.toggle('d-none');
+}
 
 window.addEventListener('orientationchange', checkAspectRatio);
 

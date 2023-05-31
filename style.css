@@ -150,6 +150,16 @@ h1 {
     transform: scale(1.1);
 }
 
+.description {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    color: white;
+    font-size: 24px;
+    margin-top: -80px;
+    margin-bottom: 30px;
+}
+
 canvas {
     background-color: black;
     display: block;
@@ -195,5 +205,15 @@ canvas {
         width: 250px;
         position: relative;
         top: 150px;
+    }
+    
+    .btnStartScreen {
+        width: 200px;
+        height: 70px;
+        padding-bottom: 0;
+    }
+
+    .imageSharkie {
+        padding-bottom: 50px;
     }
 }
