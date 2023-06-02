@@ -1,11 +1,13 @@
 let canvas;
 let world;
 let keyboard = new Keyboard;
+let sound = true;
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 }
+
 
 function startGame() {
     document.getElementById('startScreen').classList.add('d-none');
@@ -52,9 +54,11 @@ function toggleSound() {
     document.getElementById('icon_sound_off').classList.toggle('d-none');
     document.getElementById('icon_sound_on').classList.toggle('d-none');
     if (document.getElementById('icon_sound_off').classList.contains('d-none')) {
-        console.log('play sound');
+        sound = true;
+        toggleVolume();
     } else {
-        console.log('sound off');
+        sound = false;
+        toggleVolume();
     }
 }
 

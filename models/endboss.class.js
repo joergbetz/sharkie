@@ -59,7 +59,7 @@ class Endboss extends MovableObject {
         'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
     ]
 
-    endboss_sound = new Audio('audio/danger.mp3');
+    /* endboss_sound = new Audio('audio/danger.mp3'); */
 
     constructor() {
         super().loadImage('img/2.Enemy/3 Final Enemy/1.Introduce/1.png');
@@ -88,7 +88,7 @@ class Endboss extends MovableObject {
                     wonGame();
                 }, 3000);
                 this.speed = 0;
-                this.endboss_sound.pause();
+                endboss_sound.pause();
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.endbossIsHurt) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -98,7 +98,7 @@ class Endboss extends MovableObject {
                     lostGame();
                 }, 3000);
                 this.speed = 0;
-                this.endboss_sound.pause();
+                endboss_sound.pause();
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else {
                 this.playAnimation(this.IMAGES_ATTACK);
@@ -110,7 +110,7 @@ class Endboss extends MovableObject {
                 this.hadFirstContact = true;
                 this.speed = 5;
                 world.showStatusBarEndboss();
-                this.endboss_sound.play();
+                endboss_sound.play();
             }
         }, 200);
     }

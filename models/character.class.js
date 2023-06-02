@@ -110,12 +110,12 @@ class Character extends MovableObject {
     ]
 
     world;
-    swimming_sound = new Audio('audio/swimming.mp3');
+    /* swimming_sound = new Audio('audio/swimming.mp3');
     bubble_sound = new Audio('audio/bubble-shoot.mp3');
     poisonBubble_sound = new Audio('audio/bubble-shoot-2.mp3');
     gameOver_sound = new Audio('audio/game-over.mp3');
     finslap_sound = new Audio('audio/finslap.mp3');
-    snoring_sound = new Audio('audio/snoring.mp3');
+    snoring_sound = new Audio('audio/snoring.mp3'); */
 
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
@@ -146,37 +146,36 @@ class Character extends MovableObject {
     animate() {
         setInterval(() => {
             if (this.playGameOverSound && !this.gameOverSoundPlayed) {
-                this.gameOver_sound.play();
+                gameOver_sound.play();
                 this.gameOverSoundPlayed = true;
             }
         }, 200);
 
         setInterval(() => {
-            this.swimming_sound.pause();
+            swimming_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < level1.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                this.swimming_sound.play();
+                swimming_sound.play();
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
-                this.swimming_sound.play();
+                swimming_sound.play();
             }
 
             if (this.world.keyboard.UP && this.y > -20) {
                 this.y -= this.speed;
-                this.swimming_sound.play();
+                swimming_sound.play();
             }
 
             if (this.world.keyboard.DOWN && this.y < 240) {
                 this.y += this.speed;
-                this.swimming_sound.play();
+                swimming_sound.play();
             }
             this.world.camera_x = -this.x;
         }, 1000 / 60);
-
 
         setInterval(() => {
             if (this.isDead()) {
@@ -199,7 +198,7 @@ class Character extends MovableObject {
                 this.idleCounter++;
             } else {
                 this.playAnimation(this.IMAGES_LONG_IDLE);
-                this.snoring_sound.play();
+                snoring_sound.play();
             };
         }, 200);
 
@@ -210,7 +209,7 @@ class Character extends MovableObject {
                 this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_FIN_SLAP);
                 this.finSlap = true;
-                this.finslap_sound.play();
+                finslap_sound.play();
                 this.startTime = new Date().getTime();
             } else {
                 this.finSlap = false;
@@ -222,7 +221,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.yButton && !this.isDead() && !this.bubbleShoot && this.delayTime > 1000) {
                 this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_BUBBLE);
-                this.bubble_sound.play();
+                bubble_sound.play();
                 this.bubbleShoot = true;
                 this.startTime = new Date().getTime();
             };
@@ -233,7 +232,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.xButton && !this.isDead() && world.statusBarPoisson.collectedPoisonVessels > 0 && !this.poisonBubbleShoot && !level1.endbosses[0].endbossDead && this.delayTimePoison > 1000) {
                 this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_BUBBLE);
-                this.poisonBubble_sound.play();
+                poisonBubble_sound.play();
                 this.poisonBubbleShoot = true;
                 this.startTimePoison = new Date().getTime();
             };

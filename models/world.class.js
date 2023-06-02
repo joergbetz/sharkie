@@ -14,9 +14,10 @@ class World {
     shootLeft = false;
     collision;
     pufferfishDeadAnimation = false;
-    coinCollecting_sound = new Audio('audio/collecting.mp3');
-    poisonVesselCollecting_sound = new Audio('audio/biting.mp3');
+    /* coinCollecting_sound = new Audio('audio/collecting.mp3');
+    poisonVesselCollecting_sound = new Audio('audio/biting.mp3'); */
     xOffset;
+   
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -69,7 +70,7 @@ class World {
     checkPoisonBubbleShoot() {
 
         if (this.character.poisonBubbleShoot) {
-            this.statusBarPoisson.collectedPoisonVessels -=1;
+            this.statusBarPoisson.collectedPoisonVessels -= 1;
             this.statusBarPoisson.setPercentage(this.statusBarPoisson.collectedPoisonVessels);
             this.getX_Offset();
             let poisonBubble = new PoisonBubble(this.character.x + this.xOffset, this.character.y + this.character.height / 2);
@@ -137,7 +138,7 @@ class World {
             this.bubbles.forEach((bubble) => {
                 if (bubble.isColliding(jellyfish)) {
                     this.bubbles.splice(bubble, 1);
-                    let index= level1.jellyfishes.indexOf(jellyfish);
+                    let index = level1.jellyfishes.indexOf(jellyfish);
                     this.jellyfishIsDead(index);
                 }
             })
@@ -170,7 +171,7 @@ class World {
     }
 
     checkEnergyEndboss() {
-        this.statusBarEndboss.percentageEndboss -=20;
+        this.statusBarEndboss.percentageEndboss -= 20;
         this.statusBarEndboss.setPercentage(this.statusBarEndboss.percentageEndboss);
         this.showStatusBarEndboss();
         if (this.statusBarEndboss.percentageEndboss == 0) {
@@ -187,12 +188,12 @@ class World {
 
     checkFinslalCollision() {
         this.level.pufferfishes.forEach((pufferfish) => {
-                if (this.character.finSlap && this.character.isColliding(pufferfish)) {
-                    let index = level1.pufferfishes.indexOf(pufferfish);
-                    this.pufferfishIsDead(index);
-                }
+            if (this.character.finSlap && this.character.isColliding(pufferfish)) {
+                let index = level1.pufferfishes.indexOf(pufferfish);
+                this.pufferfishIsDead(index);
+            }
         });
-        
+
     }
 
     pufferfishIsDead(index) {
@@ -208,13 +209,13 @@ class World {
                 break;
         }
     }
-        
+
 
     characterHasCollectedCoin() {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
-                this.coinCollecting_sound.play();
-                this.statusBarCoins.collectedCoins +=1;
+                coinCollecting_sound.play();
+                this.statusBarCoins.collectedCoins += 1;
                 this.statusBarCoins.setPercentage(this.statusBarCoins.collectedCoins);
                 this.findIndexOfCoins(coin);
             }
@@ -233,8 +234,8 @@ class World {
     characterHasCollectedPoisonVessel() {
         this.level.poisonVessels.forEach(poisonVessel => {
             if (this.character.isColliding(poisonVessel)) {
-                this.poisonVesselCollecting_sound.play();
-                this.statusBarPoisson.collectedPoisonVessels +=1;
+                poisonVesselCollecting_sound.play();
+                this.statusBarPoisson.collectedPoisonVessels += 1;
                 this.statusBarPoisson.setPercentage(this.statusBarPoisson.collectedPoisonVessels);
                 this.findIndexOfPoisonVessel(poisonVessel);
             }
