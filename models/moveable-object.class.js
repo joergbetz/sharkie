@@ -138,7 +138,7 @@ class MovableObject extends DrawableObject {
     }
 
     flyOut() {
-        this.y -= this.speed * 5;
+        this.y -= this.speed * 15;
     }
 
     playAnimation(images) {

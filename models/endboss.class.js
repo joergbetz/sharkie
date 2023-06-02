@@ -59,8 +59,6 @@ class Endboss extends MovableObject {
         'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
     ]
 
-    /* endboss_sound = new Audio('audio/danger.mp3'); */
-
     constructor() {
         super().loadImage('img/2.Enemy/3 Final Enemy/1.Introduce/1.png');
         this.loadImages(this.IMAGES_SWIMMING);
@@ -110,6 +108,7 @@ class Endboss extends MovableObject {
                 this.hadFirstContact = true;
                 this.speed = 5;
                 world.showStatusBarEndboss();
+                main_sound.pause();
                 endboss_sound.play();
             }
         }, 200);

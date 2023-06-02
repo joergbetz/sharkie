@@ -110,12 +110,6 @@ class Character extends MovableObject {
     ]
 
     world;
-    /* swimming_sound = new Audio('audio/swimming.mp3');
-    bubble_sound = new Audio('audio/bubble-shoot.mp3');
-    poisonBubble_sound = new Audio('audio/bubble-shoot-2.mp3');
-    gameOver_sound = new Audio('audio/game-over.mp3');
-    finslap_sound = new Audio('audio/finslap.mp3');
-    snoring_sound = new Audio('audio/snoring.mp3'); */
 
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
@@ -196,21 +190,19 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_IDLE)
                 this.finSlap = false;
                 this.idleCounter++;
-            } else {
+                console.log(this.idleCounter);
+            } else if (this.idleCounter == 30) {
                 this.playAnimation(this.IMAGES_LONG_IDLE);
                 snoring_sound.play();
             };
         }, 200);
 
         setInterval(() => {
-            this.delayTime = new Date().getTime() - this.startTime;
-
             if (this.world.keyboard.SPACE && !this.isDead()) {
                 this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_FIN_SLAP);
                 this.finSlap = true;
                 finslap_sound.play();
-                this.startTime = new Date().getTime();
             } else {
                 this.finSlap = false;
             };

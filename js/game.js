@@ -16,6 +16,7 @@ function startGame() {
     document.getElementById('lostScreen').classList.add('d-none');
     initLevel1();
     init();
+    main_sound.play().loop;
 }
 
 function restartGame() {
@@ -65,7 +66,35 @@ function toggleSound() {
 function toggleScreenSize() {
     document.getElementById('icon_full_screen').classList.toggle('d-none');
     document.getElementById('icon_exit_full_screen').classList.toggle('d-none');
+    if (document.getElementById('icon_full_screen').classList.contains('d-none')) {
+        fullscreen();
+    } else {
+        exitFullscreen();
+    }
 }
+
+function fullscreen() {
+    let fullscreen = document.getElementById('fullscreen');
+    enterFullscreen(fullscreen);
+}
+
+function enterFullscreen(element) {
+    if(element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if(element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+      element.msRequestFullscreen();
+    } else if(element.webkitRequestFullscreen) {  // iOS Safari
+      element.webkitRequestFullscreen();
+    }
+  }
+
+  function exitFullscreen() {
+    if(document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if(document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }  
 
 window.addEventListener('orientationchange', checkAspectRatio);
 

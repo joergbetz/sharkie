@@ -47,26 +47,27 @@
 
     <h1>Sharky</h1>
 
-    <main>
+    <main id="fullscreen">
         <img src="icons/sound_off.png" alt="sound off" id="icon_sound_off" onclick="toggleSound()" class="d-none">
         <img src="icons/fullscreen.png" alt="full screen" id="icon_full_screen" onclick="toggleScreenSize()">
         <img src="icons/sound_on.png" alt="sound off" id="icon_sound_on" onclick="toggleSound()">
-        <img src="icons/exit_fullscreen.png" alt="exit full screen" id="icon_exit_full_screen" onclick="toggleScreenSize()" class="d-none">
+        <img src="icons/exit_fullscreen.png" alt="exit full screen" id="icon_exit_full_screen"
+            onclick="toggleScreenSize()" class="d-none">
 
-        <canvas id="canvas" width="720" height="480" class="d-none">
+            <canvas id="canvas" width="720" height="480" class="d-none">
 
-        </canvas>
+            </canvas>
 
         <div id="startScreen" class="containerStartScreen ">
             <img class="imageSharkie" src="img/1.Sharkie/1.IDLE/Prewiew.gif">
             <div class="description">
-                <span>Use arrow keys to move  |  Space = finslap </span>
-                <span> y = bubble shoot  |  x = poison bubble shoot</span>
+                <span>Use arrow keys to move | Space = finslap </span>
+                <span> y = bubble shoot | x = poison bubble shoot</span>
             </div>
             <div class=containerBtn>
                 <img class="btnStartScreen" src="img/6.Botones/Start/4.png" onclick="startGame()">
             </div>
-           
+
         </div>
 
         <div id="wonScreen" class="containerWonScreen d-none">

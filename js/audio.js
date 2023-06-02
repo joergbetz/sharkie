@@ -7,6 +7,7 @@ finslap_sound = new Audio('audio/finslap.mp3');
 snoring_sound = new Audio('audio/snoring.mp3');
 coinCollecting_sound = new Audio('audio/collecting.mp3');
 poisonVesselCollecting_sound = new Audio('audio/biting.mp3');
+main_sound = new Audio('audio/techno_loop.mp3');
 
 let audioElements = [
     endboss_sound,
@@ -17,8 +18,12 @@ let audioElements = [
     finslap_sound,
     snoring_sound,
     coinCollecting_sound,
-    poisonVesselCollecting_sound
+    poisonVesselCollecting_sound,
+    main_sound
 ];
+
+main_sound.volume = 0.4;
+main_sound.loop = true;
 
 function toggleVolume() {
     if (!sound) {
@@ -26,8 +31,9 @@ function toggleVolume() {
             audioElements[i].volume = 0;
         }
     } else {
-        for (let i = 0; i < audioElements.length; i++) {
+        for (let i = 0; i < audioElements.length-1; i++) {
             audioElements[i].volume = 1;
         }
+        main_sound.volume = 0.4;
     }
 };

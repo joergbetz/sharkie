@@ -121,7 +121,7 @@ class World {
 
     checkCollisionsEndbosses() {
         this.level.endbosses.forEach((endboss) => {
-            if (this.character.isColliding(endboss)) {
+            if (this.character.isColliding(endboss) && !level1.endbosses[0].endbossDead) {
                 this.collision = 'endboss';
                 this.collisionConsequences();
             };
