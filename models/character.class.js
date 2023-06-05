@@ -190,7 +190,6 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_IDLE)
                 this.finSlap = false;
                 this.idleCounter++;
-                console.log(this.idleCounter);
             } else if (this.idleCounter == 30) {
                 this.playAnimation(this.IMAGES_LONG_IDLE);
                 snoring_sound.play();

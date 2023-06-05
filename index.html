@@ -7,13 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Sharkie</title>
-    <!-- <link rel="preload" href="models/jellyfish_lila.class.js" as="script">
+    <link rel="preload" href="models/drawable-object.class.js" as="script">
+    <link rel="preload" href="models/moveable-object.class.js" as="script">
+    <link rel="preload" href="models/jellyfish_lila.class.js" as="script">
     <link rel="preload" href="models/jellyfish_green.class.js" as="script">
     <link rel="preload" href="models/jellyfish_pink.class.js" as="script">
     <link rel="preload" href="models/pufferfish_green.class.js" as="script">
     <link rel="preload" href="models/pufferfish_orange.class.js" as="script">
     <link rel="preload" href="models/pufferfish_red.class.js" as="script">
-    <link rel="preload" href="models/world.class.js" as="script"> -->
+    <link rel="preload" href="models/world.class.js" as="script">
+    <link rel="preload" href="models/character.class.js" as="script">
+    <link rel="preload" href="models/status-bar.class.js" as="script">
+    <link rel="preload" href="models/status-bar-coins.class.js" as="script">
+    <link rel="preload" href="models/status-bar-poisson.class.js" as="script">
+    <link rel="preload" href="models/background-object.class.js" as="script">
+    <link rel="preload" href="models/coins.class.js" as="script">
+    <link rel="preload" href="models/poisonVessels.class.js" as="script">
+    <link rel="preload" href="models/keyboard.class.js" as="script">
 
 
     <script src="models/drawable-object.class.js"></script>
@@ -53,10 +63,27 @@
         <img src="icons/sound_on.png" alt="sound off" id="icon_sound_on" onclick="toggleSound()">
         <img src="icons/exit_fullscreen.png" alt="exit full screen" id="icon_exit_full_screen"
             onclick="toggleScreenSize()" class="d-none">
+        <div class="move" id="move">
+            <img src="img/6.Botones/Key/up-key.png" id="up_button">
+            <img src="img/6.Botones/Key/left-key.png" id="left_button">
+            <img src="img/6.Botones/Key/down-key.png" id="down_button">
+            <img src="img/6.Botones/Key/right-key.png" id="right_button">
+            <div class="attack_btn_container">
+                <span class="attack_btn attack_btn1">SPACE</span>
+                <span class="attack_btn attack_btn2">Y</span>
+                <span class="attack_btn attack_btn3">X</span>
+            </div>
 
-            <canvas id="canvas" width="720" height="480" class="d-none">
+        </div>
 
-            </canvas>
+
+        <canvas id="canvas" width="720" height="480" class="d-none">
+
+        </canvas>
+
+        <div id="turnScreen" class="containerTurnScreen d-none">
+            <p>Please turn your device</p>
+        </div>
 
         <div id="startScreen" class="containerStartScreen ">
             <img class="imageSharkie" src="img/1.Sharkie/1.IDLE/Prewiew.gif">

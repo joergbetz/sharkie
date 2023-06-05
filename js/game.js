@@ -37,6 +37,7 @@ function wonGame() {
 
 function lostGame() {
     clearAllIntervals();
+    document.getElementById('move').classList.remove('d-none');
     document.getElementById('startScreen').classList.add('d-none');
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('wonScreen').classList.add('d-none');
@@ -44,11 +45,15 @@ function lostGame() {
 }
 
 function checkAspectRatio() {
-    if (window.orientation === 0) {
-        console.log('Hochformat')
-        console.log('Please rotate your device');
+    if (window.orientation === 0 || window.orientation === 180) {
+        console.log(window.orientation);
+        document.getElementById('move').classList.add('d-none');
+        document.getElementById('startScreen').classList.add('d-none');
+        document.getElementById('turnScreen').classList.remove('d-none');
     } else {
-        console.log('Querformat');
+        document.getElementById('move').classList.remove('d-none');
+        document.getElementById('turnScreen').classList.add('d-none');
+        document.getElementById('startScreen').classList.remove('d-none');
     }
 }
 function toggleSound() {

@@ -53,11 +53,63 @@ h1 {
     top: 15px;
 }
 
+#up_button {
+    width: 30px;
+    position: absolute;
+    left: 50px;
+    top: 270px;
+}
+
+#left_button {
+    width: 30px;
+    position: absolute;
+    left: 10px;
+    top: 300px;
+}
+
+#down_button {
+    width: 30px;
+    position: absolute;
+    left: 50px;
+    top: 330px;
+}
+
+#right_button {
+    width: 30px;
+    position: absolute;
+    left: 90px;
+    top: 300px;
+}
 
 #icon_sound_off:hover, #icon_sound_on:hover {
     transition: all 225ms ease-in-out;
     cursor: pointer;
     transform: scale(1.2);
+}
+
+.attack_btn {
+    font-size: 25px;
+    position: absolute;
+    top: 310px;
+    box-sizing: border-box;
+    border: 3px solid white;
+    border-radius: 12px;
+    padding: 6px;
+    background-color: #bf067f;
+    color: white;
+    
+}
+
+.attack_btn1 {
+    right: 120px;
+}
+
+.attack_btn2 {
+    right: 75px;
+}
+
+.attack_btn3 {
+    right: 30px;
 }
 
 .d-none {
@@ -121,7 +173,19 @@ h1 {
     justify-content: center;
 }
 
-
+.containerTurnScreen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 8px;
+        padding-right: 8px;
+        text-align: center;
+        height: 100vh;
+        background-color: black;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+    }
 
 .containerBtn {
     display: flex;
