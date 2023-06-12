@@ -33,11 +33,12 @@ function wonGame() {
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('wonScreen').classList.remove('d-none');
     document.getElementById('lostScreen').classList.add('d-none');
+    document.getElementById('move').classList.add('d-none');
 }
 
 function lostGame() {
     clearAllIntervals();
-    document.getElementById('move').classList.remove('d-none');
+    getClientHeight();
     document.getElementById('startScreen').classList.add('d-none');
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('wonScreen').classList.add('d-none');
@@ -45,17 +46,27 @@ function lostGame() {
 }
 
 function checkAspectRatio() {
-    if (window.orientation === 0 || window.orientation === 180) {
-        console.log(window.orientation);
+    if (screen.orientation.type === 'landscape-primary') {
+        getClientHeight();
+        document.getElementById('turnScreen').classList.add('d-none');
+        document.getElementById('startScreen').classList.remove('d-none');
+        console.log(screen.orientation.type);
+    } else {  
+        console.log(screen.orientation.type);
         document.getElementById('move').classList.add('d-none');
         document.getElementById('startScreen').classList.add('d-none');
         document.getElementById('turnScreen').classList.remove('d-none');
-    } else {
-        document.getElementById('move').classList.remove('d-none');
-        document.getElementById('turnScreen').classList.add('d-none');
-        document.getElementById('startScreen').classList.remove('d-none');
     }
 }
+
+function getClientHeight() {
+    let clientHeight = document.getElementById('startScreen').clientHeight;
+    console.log(clientHeight);
+    if (clientHeight < 480) {
+        document.getElementById('move').classList.remove('d-none');
+    };
+}
+
 function toggleSound() {
     document.getElementById('icon_sound_off').classList.toggle('d-none');
     document.getElementById('icon_sound_on').classList.toggle('d-none');
