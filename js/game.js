@@ -51,7 +51,7 @@ function checkAspectRatio() {
         document.getElementById('turnScreen').classList.add('d-none');
         document.getElementById('startScreen').classList.remove('d-none');
         console.log(screen.orientation.type);
-    } else {  
+    } else {
         console.log(screen.orientation.type);
         document.getElementById('move').classList.add('d-none');
         document.getElementById('startScreen').classList.add('d-none');
@@ -95,79 +95,87 @@ function fullscreen() {
 }
 
 function enterFullscreen(element) {
-    if(element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if(element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
-      element.msRequestFullscreen();
-    } else if(element.webkitRequestFullscreen) {  // iOS Safari
-      element.webkitRequestFullscreen();
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+        element.webkitRequestFullscreen();
     }
-  }
+}
 
-  function exitFullscreen() {
-    if(document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if(document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
     }
-  }  
+}
 
-  function spaceBtnTouched() {
-    keyboard.SPACE = true;
-  };
+window.addEventListener('touchstart', mobileBtnTouched);
+window.addEventListener('touchend', mobileBtnUntouched);
 
-  function spaceBtnUntouched() {
-    keyboard.SPACE = false;
-  };
+function mobileBtnTouched() {
+        document.getElementById('space_btn').addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            keyboard.SPACE = true;
+        });
+        document.getElementById('y_btn').addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            keyboard.yButton = true;
+        });
+        document.getElementById('x_btn').addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            keyboard.xButton = true;
+        });
+        document.getElementById('up_btn').addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            keyboard.UP = true;
+        });
+        document.getElementById('down_btn').addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            keyboard.DOWN = true;
+        });
+        document.getElementById('left_btn').addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            keyboard.LEFT = true;
+        });
+        document.getElementById('right_btn').addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            keyboard.RIGHT = true;
+        });
+}
 
-  function yBtnTouched() {
-    keyboard.yButton = true;
-  };
-
-  function yBtnUntouched() {
-    keyboard.yButton = false;
-  };
-
-  function xBtnTouched() {
-    keyboard.xButton = true;
-  };
-
-  function xBtnUntouched() {
-    keyboard.xButton = false;
-  };
-
-  function upBtnTouched() {
-    keyboard.UP = true;
-  }
-
-  function upBtnUntouched() {
-    keyboard.UP = false;
-  }
-
-  function downBtnTouched() {
-    keyboard.DOWN = true;
-  }
-
-  function downBtnUntouched() {
-    keyboard.DOWN = false;
-  }
-
-  function leftBtnTouched() {
-    keyboard.LEFT = true;
-  }
-
-  function leftBtnUntouched() {
-    keyboard.LEFT = false;
-  }
-
-  function rightBtnTouched() {
-    keyboard.RIGHT = true;
-  }
-
-  function rightBtnUntouched() {
-    keyboard.RIGHT = false;
-  }
-
+function mobileBtnUntouched() {
+        document.getElementById('space_btn').addEventListener('touchend', (event) => {
+            event.preventDefault();
+            keyboard.SPACE = false;
+        });
+        document.getElementById('y_btn').addEventListener('touchend', (event) => {
+            event.preventDefault();
+            keyboard.yButton = false;
+        });
+        document.getElementById('x_btn').addEventListener('touchend', (event) => {
+            event.preventDefault();
+            keyboard.xButton = false;
+        });
+        document.getElementById('up_btn').addEventListener('touchend', (event) => {
+            event.preventDefault();
+            keyboard.UP = false;
+        });
+        document.getElementById('down_btn').addEventListener('touchend', (event) => {
+            event.preventDefault();
+            keyboard.DOWN = false;
+        });
+        document.getElementById('left_btn').addEventListener('touchend', (event) => {
+            event.preventDefault();
+            keyboard.LEFT = false;
+        });
+        document.getElementById('right_btn').addEventListener('touchend', (event) => {
+            event.preventDefault();
+            keyboard.RIGHT = false;
+        });
+};
 
 window.addEventListener('orientationchange', checkAspectRatio);
 

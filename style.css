@@ -55,28 +55,28 @@ h1 {
     top: 15px;
 }
 
-#up_button {
+#up_btn {
     width: 30px;
     position: absolute;
     left: 50px;
     top: 270px;
 }
 
-#left_button {
+#left_btn {
     width: 30px;
     position: absolute;
     left: 10px;
     top: 300px;
 }
 
-#down_button {
+#down_btn {
     width: 30px;
     position: absolute;
     left: 50px;
     top: 330px;
 }
 
-#right_button {
+#right_btn {
     width: 30px;
     position: absolute;
     left: 90px;
