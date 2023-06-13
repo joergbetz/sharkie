@@ -112,6 +112,63 @@ function enterFullscreen(element) {
     }
   }  
 
+  function spaceBtnTouched() {
+    keyboard.SPACE = true;
+  };
+
+  function spaceBtnUntouched() {
+    keyboard.SPACE = false;
+  };
+
+  function yBtnTouched() {
+    keyboard.yButton = true;
+  };
+
+  function yBtnUntouched() {
+    keyboard.yButton = false;
+  };
+
+  function xBtnTouched() {
+    keyboard.xButton = true;
+  };
+
+  function xBtnUntouched() {
+    keyboard.xButton = false;
+  };
+
+  function upBtnTouched() {
+    keyboard.UP = true;
+  }
+
+  function upBtnUntouched() {
+    keyboard.UP = false;
+  }
+
+  function downBtnTouched() {
+    keyboard.DOWN = true;
+  }
+
+  function downBtnUntouched() {
+    keyboard.DOWN = false;
+  }
+
+  function leftBtnTouched() {
+    keyboard.LEFT = true;
+  }
+
+  function leftBtnUntouched() {
+    keyboard.LEFT = false;
+  }
+
+  function rightBtnTouched() {
+    keyboard.RIGHT = true;
+  }
+
+  function rightBtnUntouched() {
+    keyboard.RIGHT = false;
+  }
+
+
 window.addEventListener('orientationchange', checkAspectRatio);
 
 window.addEventListener("keydown", (e) => {
@@ -142,7 +199,7 @@ window.addEventListener("keydown", (e) => {
     if (e.keyCode == 88) {
         keyboard.xButton = true;
     }
-})
+});
 
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 39) {

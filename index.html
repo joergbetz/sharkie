@@ -64,14 +64,14 @@
         <img src="icons/exit_fullscreen.png" alt="exit full screen" id="icon_exit_full_screen"
             onclick="toggleScreenSize()" class="d-none">
         <div class="move d-none" id="move">
-            <img src="img/6.Botones/Key/up-key.png" id="up_button">
-            <img src="img/6.Botones/Key/left-key.png" id="left_button">
-            <img src="img/6.Botones/Key/down-key.png" id="down_button">
-            <img src="img/6.Botones/Key/right-key.png" id="right_button">
+            <img src="img/6.Botones/Key/up-key.png" id="up_button" ontouchstart="upBtnTouched()" ontouchend="upBtnUntouched()">
+            <img src="img/6.Botones/Key/left-key.png" id="left_button" ontouchstart="leftBtnTouched()" ontouchend="leftBtnUntouched()">
+            <img src="img/6.Botones/Key/down-key.png" id="down_button" ontouchstart="downBtnTouched()" ontouchend="downBtnUntouched()">
+            <img src="img/6.Botones/Key/right-key.png" id="right_button" ontouchstart="rightBtnTouched()" ontouchend="rightBtnUntouched()">
             <div class="attack_btn_container">
-                <span class="attack_btn attack_btn1">SPACE</span>
-                <span class="attack_btn attack_btn2">Y</span>
-                <span class="attack_btn attack_btn3">X</span>
+                <span class="attack_btn attack_btn1" id="space-btn" ontouchstart="spaceBtnTouched()" ontouchend="spaceBtnUntouched()">SPACE</span>
+                <span class="attack_btn attack_btn2" id="y-btn" ontouchstart="yBtnTouched()" ontouchend="yBtnUntouched()">Y</span>
+                <span class="attack_btn attack_btn3" id="x-btn" ontouchstart="xBtnTouched()" ontouchend="xBtnUntouched()">X</span>
             </div>
 
         </div>
