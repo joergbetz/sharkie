@@ -49,6 +49,7 @@ function checkAspectRatio() {
     if (screen.orientation.type === 'landscape-primary') {
         getClientHeight();
         document.getElementById('turnScreen').classList.add('d-none');
+        document.getElementById('headline').classList.remove('d-none');
         document.getElementById('startScreen').classList.remove('d-none');
         console.log(screen.orientation.type);
     } else {
@@ -56,6 +57,7 @@ function checkAspectRatio() {
         document.getElementById('move').classList.add('d-none');
         document.getElementById('startScreen').classList.add('d-none');
         document.getElementById('turnScreen').classList.remove('d-none');
+        document.getElementById('headline').classList.add('d-none');
     }
 }
 
